@@ -13,7 +13,7 @@ public class Resource {
     private int id;
 
     //    private int id;
-    @Column(name = "id")
+    @Column(name = "emp_id")
     private int emp_id;
     @Column(name = "password")
     private String password;
@@ -33,8 +33,13 @@ public class Resource {
     private String gender;
     @Column(name = "location")
     private  String location;
-    @Column(name = "designation_id")
-    private int designation_id;
+//    @Column(name="designation_id")
+//    private int designation_id;
+
+    @OneToOne(fetch = FetchType.LAZY,optional = false)
+    @JoinColumn(name="id")
+    private Designation designation_id;
+
     @Column(name = "remark")
     private  String remark;
     @Column(name = "date_of_add")
