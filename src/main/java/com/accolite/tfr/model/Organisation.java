@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
+@Table(name="organization")
 public class Organisation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
