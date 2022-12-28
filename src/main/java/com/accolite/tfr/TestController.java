@@ -26,18 +26,6 @@ public class TestController {
 
     @Autowired
     private Service service;
-//    @PostMapping("/project")
-//    private ResponseEntity<Project> addProject(@RequestBody Project project ){
-//        return ResponseEntity.ok().body(this.service.addProject(project));
-//    }
-//    @GetMapping("/organisation/{org_id}")
-//    private ResponseEntity<Organisation> organisation(@PathVariable int org_Id){
-//        return ResponseEntity.ok().body(this.service.getOrganisation(org_Id));
-//    }
-//    @GetMapping("/feature/{feature_id}")
-//    private ResponseEntity<Feature> organisation(@PathVariable int feature_id){
-//        return ResponseEntity.ok().body(this.service.getFeature(feature_id));
-//    }
     @PostMapping("/feature")
     private  ResponseEntity<FeatureDto> addFeature(@RequestBody Feature feature){
         Feature newFeature = this.service.addFeature(feature);
