@@ -12,8 +12,12 @@ public class Risk {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private int id;
-    @Column(name = "project_id")
-    private int project_id;
+//    @Column(name = "project_id")
+//    private int project_id;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+    @JoinColumn(name="project_id",referencedColumnName = "id")
+    private Project ProjectRisk;
+
     @Column(name = "risk")
     private String risk;
     @Column(name = "risk_mitigation")
@@ -22,12 +26,20 @@ public class Risk {
     private Date start_date;
     @Column(name = "end_date")
     private Date end_date;
-    @Column(name = "created_by")
-    private int created_by;
+//    @Column(name = "created_by")
+//    private int created_by;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+    @JoinColumn(name="created_by",referencedColumnName = "id")
+    private Resource CreatedBy;
+
     @Column(name = "date_of_add")
     private Date date_of_add;
-    @Column(name = "modified_by")
-    private int modified_by;
+//    @Column(name = "modified_by")
+//    private int modified_by;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+    @JoinColumn(name="modified_by",referencedColumnName = "id")
+    private Resource ModifiedBy;
+
     @Column(name = "date_of_modified")
     private Date date_of_modified;
 

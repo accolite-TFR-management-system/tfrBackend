@@ -10,7 +10,6 @@ public class ResourceDto {
     private int emp_id;
     private String  name;
     private String  email;
-    private  Long project_id;
     private Date join_date;
     private Date leave_date;
     private String skill;
@@ -18,6 +17,4 @@ public class ResourceDto {
     private  String location;
     private Long designation_id;
     private  String remark;
-    private Date date_of_add;//TimeStamp
-    private Long created_by;
 }

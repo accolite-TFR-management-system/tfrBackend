@@ -7,13 +7,19 @@ import java.util.Date;
 
 @Entity
 @Data
+@Table(name = "goals")
 public class Goals {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private int id;
-    @Column(name = "milestone_id")
-    private int milestone_id;
+//    @Column(name = "milestone_id")
+//    private int milestone_id;
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+    @JoinColumn(name="milestone_id",referencedColumnName = "id")
+    private Milestone Goals;
+
     @Column(name = "goal_name")
     private String name;
     @Column(name = "goal_description")
@@ -26,15 +32,18 @@ public class Goals {
     private Date start_date;
     @Column(name = "end_date")
     private Date end_date;
-    @Column(name = "created_by")
-    private int created_by;
+//    @Column(name = "created_by")
+//    private int created_by;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+    @JoinColumn(name="created_by",referencedColumnName = "id")
+    private Resource CreatedBy;
 
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 }

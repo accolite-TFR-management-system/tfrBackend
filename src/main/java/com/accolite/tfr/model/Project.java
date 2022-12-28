@@ -1,9 +1,11 @@
 package com.accolite.tfr.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -25,18 +27,31 @@ public class Project {
     private int sow;
     @Column(name="total_resource")
     private int total_resource;
-    @Column(name="department_id")
-    private int department_id;
-    @Column(name="super_department_id")
-    private int super_department_id;
-    @Column(name="division_id")
-    private int division_id;
-    @Column(name="client_id")
-    private int client_id;
-    @Column(name="department_head_id")
-    private int department_head_id;
-    @Column(name="resource_lead_id")
-    private int resource_lead_id;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+    @JoinColumn(name="department_id",referencedColumnName = "id")
+    private Organisation department;
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+    @JoinColumn(name="super_department_id",referencedColumnName = "id")
+    private Organisation superDepartment;
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+    @JoinColumn(name="division_id",referencedColumnName = "id")
+    private Organisation division;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+    @JoinColumn(name="client_id",referencedColumnName = "id")
+    private Clients Client;
+//    @Column(name="client_id")
+//    private int client_id;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+    @JoinColumn(name="department_head_id",referencedColumnName = "id")
+    private Resource ProjectForDep;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+    @JoinColumn(name="resource_lead_id",referencedColumnName = "id")
+    private Resource ProjectForLead;
+
+//    @Column(name="resource_lead_id")
+//    private int resource_lead_id;
     @Column(name="remarks")
     private String remarks;
     @Column(name="parent_id")
@@ -45,11 +60,30 @@ public class Project {
     private  int current_pointer;
     @Column(name="date_of_add")
     private Date date_of_add;
-    @Column(name="created_by")
-    private int created_by;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+    @JoinColumn(name="created_by",referencedColumnName = "id")
+    private Resource createdBy;
     @Column(name="invoicing_status")
     private String invoicing_status;
-    @Column(name="spoc_id")
-    private int spoc_id;
+//
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+    @JoinColumn(name="spoc_id",referencedColumnName = "id")
+    private Resource spoc;
+    @OneToMany(mappedBy = "project")
+    private List<Milestone> milestoneList;
+    @OneToMany(mappedBy = "ResourceHistoryProject")
+    private List<ResourceHistory> ResourceHistoryProject;
+    @OneToMany(mappedBy = "ProjectRisk")
+    private List<Risk> ProjectRisk;
+    @OneToMany(mappedBy = "CreatedBy")
+    private List<Risk> CreatedBy;
+    @OneToMany(mappedBy = "ModifiedBy")
+    private List<Risk> ModifiedBy;
+
+
+    @OneToMany(mappedBy = "Project")
+//    @JsonBackReference(value="ProjectForDep")
+    private List<ProjectStatus> listOfStatus;
 
 }
