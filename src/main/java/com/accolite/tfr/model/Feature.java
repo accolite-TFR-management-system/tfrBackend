@@ -17,6 +17,7 @@ public class Feature {
     private  String feature;
     @ManyToMany(mappedBy = "feature")
     private List<ResourceFeatureMN> resourceFeatureMN;
+
 //    @Column(name = "feature_name")
 //    private String feature_name;
 

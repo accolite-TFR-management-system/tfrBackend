@@ -26,6 +26,7 @@ public class TestController {
 
     @Autowired
     private Service service;
+
     @PostMapping("/feature")
     private  ResponseEntity<FeatureDto> addFeature(@RequestBody Feature feature){
         Feature newFeature = this.service.addFeature(feature);

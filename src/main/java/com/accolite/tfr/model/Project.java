@@ -43,6 +43,7 @@ public class Project {
     private Clients Client;
 //    @Column(name="client_id")
 //    private int client_id;
+
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="department_head_id",referencedColumnName = "id")
     private Resource ProjectForDep;

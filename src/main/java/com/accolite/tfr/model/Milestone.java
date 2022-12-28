@@ -28,6 +28,7 @@ public class Milestone {
     private Date date_of_add;
     @Column(name = "weightage")
     private int weightage;
+
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="created_by",referencedColumnName = "id")
     private Resource resource;

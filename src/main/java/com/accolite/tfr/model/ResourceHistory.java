@@ -41,16 +41,15 @@ public class ResourceHistory {
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="created_by",referencedColumnName = "id")
     private Resource  ResourceHistorycreatedBy;
-
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="project_id",referencedColumnName = "id")
     private Project  ResourceHistoryProject;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 }

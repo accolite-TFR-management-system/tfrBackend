@@ -13,6 +13,7 @@ public class ResourceFeatureMN {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private int id;
+
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="feature_id",referencedColumnName = "id")
     private List<Feature> feature;

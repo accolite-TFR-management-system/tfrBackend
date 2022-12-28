@@ -24,6 +24,7 @@ public class ProjectStatus {
     @Column(name = "date_of_add")
     private Date date_of_add;
 
+
     @Column(name = "added_by")
     private int added_by;
 

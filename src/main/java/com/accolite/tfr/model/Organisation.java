@@ -23,6 +23,7 @@ public class Organisation {
     @Column(name = "parent_id")
     private int parent_id;
 
+
     @OneToMany(mappedBy = "department")
 //    @JsonBackReference(value="department")
     private List<Project> departmentList;

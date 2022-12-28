@@ -20,6 +20,7 @@ public class Designation {
     @Column(name = "designation_code")
     private int designation_code;
 
+
     @OneToMany(mappedBy = "ResourceList")
     private List<Resource> ResourceList;
 

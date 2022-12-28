@@ -43,11 +43,11 @@ public class Risk {
     @Column(name = "date_of_modified")
     private Date date_of_modified;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 }

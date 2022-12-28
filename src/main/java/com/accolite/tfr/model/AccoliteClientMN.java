@@ -14,6 +14,7 @@ public class AccoliteClientMN {
     @Column(name = "id", nullable = false)
     private int id;
 
+
 //    @Column(name = "client_id")
 //    private int client_id;
 //    @Column(name = "resource_id")

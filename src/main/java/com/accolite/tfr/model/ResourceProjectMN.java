@@ -16,4 +16,5 @@ public class ResourceProjectMN {
     private int project_id;
     @Column(name = "resource_id")
     private int resource_id;
+
 }

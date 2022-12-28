@@ -73,6 +73,7 @@ public class Resource {
 
     //    @Column(name = "designation_id")
 //    private int designation_id;
+
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="designation_id",referencedColumnName = "id")
     private Designation ResourceList;
