@@ -1,8 +1,10 @@
 package com.accolite.tfr.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -21,6 +23,15 @@ public class Organisation {
     @Column(name = "parent_id")
     private int parent_id;
 
+    @OneToMany(mappedBy = "department")
+//    @JsonBackReference(value="department")
+    private List<Project> departmentList;
+    @OneToMany(mappedBy = "superDepartment")
+//    @JsonBackReference(value="department")
+    private List<Project> superDepartmentList;
+    @OneToMany(mappedBy = "division")
+//    @JsonBackReference(value="department")
+    private List<Project> divisionList;
 
 //    public Long getId() {
 //        return id;

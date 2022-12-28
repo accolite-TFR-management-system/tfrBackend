@@ -2,12 +2,13 @@ package com.accolite.tfr.model;
 
 
 import lombok.Data;
-import org.hibernate.engine.internal.Cascade;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
+@Table(name ="designation")
 public class Designation {
 
     @Id
@@ -18,6 +19,11 @@ public class Designation {
     private String designation_name;
     @Column(name = "designation_code")
     private int designation_code;
-    @OneToOne(cascade = CascadeType.ALL,mappedBy = "designation_id")
-    private Resource resource;
+
+    @OneToMany(mappedBy = "ResourceList")
+    private List<Resource> ResourceList;
+
+    @OneToMany(mappedBy = "ResourceHistoryList")
+    private List<ResourceHistory> ResourceHistoryList;
+
 }

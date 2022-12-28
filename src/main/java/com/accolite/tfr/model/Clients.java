@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -21,13 +22,22 @@ public class Clients {
     private String emp_email;
     @Column(name = "date_of_add")
     private Date date_of_add;
-    @Column(name = "created_by")
-    private int created_by;
-    @Column(name = "modified_by")
-    private int modified_by;
-    @Column(name = "date_of_modify")
-    private Date date_of_modified;
+//    @Column(name = "created_by")
+//    private int created_by;
+@ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+@JoinColumn(name="created_by",referencedColumnName = "id")
+private Resource createdBy;
+//    @Column(name = "modified_by")
+//    private int modified_by;
+@ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+@JoinColumn(name="modified_by",referencedColumnName = "id")
+private Resource modifiedBy;
+//    @Column(name = "date_of_modify")
+//    private Date date_of_modified;
 
+    @OneToMany(mappedBy = "Client")
+//    @JsonBackReference(value="ProjectForLead")
+    private List<Project> clientList;
     public int getId() {
         return id;
     }
