@@ -1,10 +1,13 @@
 package com.accolite.tfr.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -35,14 +38,33 @@ private Resource modifiedBy;
 //    @Column(name = "date_of_modify")
 //    private Date date_of_modified;
 
-    @OneToMany(mappedBy = "Client")
-//    @JsonBackReference(value="ProjectForLead")
+    @OneToMany(mappedBy = "client")
+    @JsonIgnore
     private List<Project> clientList;
-    public int getId() {
-        return id;
+
+    public Set<Resource> getResourcec() {
+        return resourcec;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setResourcec(Set<Resource> resourcec) {
+        this.resourcec = resourcec;
     }
+
+    @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.MERGE, CascadeType. DETACH})
+    @JoinTable(
+            name = "resource_client_mn_table",
+            joinColumns = { @JoinColumn(name = "client_id") },
+            inverseJoinColumns = { @JoinColumn(name = "resource_id") }
+    )
+    //@JsonManagedReference
+    private Set<Resource> resourcec = new HashSet<>();
+
+
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 }

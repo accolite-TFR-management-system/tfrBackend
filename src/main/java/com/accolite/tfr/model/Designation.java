@@ -1,6 +1,7 @@
 package com.accolite.tfr.model;
 
 
+import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.List;
 @Entity
 @Data
 @Table(name ="designation")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property="id")
 public class Designation {
 
     @Id
@@ -20,10 +22,19 @@ public class Designation {
     @Column(name = "designation_code")
     private int designation_code;
 
-    @OneToMany(mappedBy = "ResourceList")
-    private List<Resource> ResourceList;
+//    @OneToMany(mappedBy = "ResourceList")
+//    private List<Resource> ResourceList;
 
     @OneToMany(mappedBy = "ResourceHistoryList")
+    @JsonIgnore
     private List<ResourceHistory> ResourceHistoryList;
+
+
+    //new change
+    @OneToMany(mappedBy = "ResourceList")
+//    @JsonBackReference
+    @JsonIgnore
+//    @JsonBackReference(value="ResourceList")
+    private List<Resource> ResourceList;
 
 }
