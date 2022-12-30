@@ -1,9 +1,9 @@
 package com.accolite.tfr.service;
 
-import com.accolite.tfr.dto.RiskDto;
-import com.accolite.tfr.model.Risk;
+import com.accolite.tfr.DTO.RiskDTO;
+import com.accolite.tfr.DTOmodel.RiskModel;
+import com.accolite.tfr.entity.Risk;
 import com.accolite.tfr.repository.RiskRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,21 +12,13 @@ public class RiskServiceImp implements RiskService{
 
     @Autowired
     private RiskRepository riskRepository;
-    @Autowired
-    public ModelMapper modelMapper;
+    @Autowired(required = false)
+    public RiskDTO riskDTO;
 
-    public Risk addRisk(RiskDto od) {
-        Risk risk = this.mapToEntity(od);
+    public Risk addRisk(RiskModel od) {
+        Risk risk = this.riskDTO.modelToEntity(od);
         return this.riskRepository.save(risk);
     }
 
-    public RiskDto mapToDto(Risk org) {
-        RiskDto od = modelMapper.map(org,RiskDto.class);
-        return od;
-    }
 
-    public Risk mapToEntity(RiskDto od) {
-        Risk org = modelMapper.map(od, Risk.class);
-        return org;
-    }
 }

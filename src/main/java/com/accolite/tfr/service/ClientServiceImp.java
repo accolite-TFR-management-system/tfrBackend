@@ -1,32 +1,43 @@
 package com.accolite.tfr.service;
 
-import com.accolite.tfr.dto.ClientDto;
-import com.accolite.tfr.model.Clients;
+import com.accolite.tfr.DTO.ClientsDTO;
+import com.accolite.tfr.exception.Exception;
+import com.accolite.tfr.DTOmodel.ClientsModel;
+import com.accolite.tfr.entity.Clients;
 import com.accolite.tfr.repository.ClientRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class ClientServiceImp implements ClientsService{
 
     @Autowired
     private ClientRepository clientRepository;
+
     @Autowired
     public ModelMapper modelMapper;
 
-    public Clients addClients(ClientDto od) {
-        Clients client = this.mapToEntity(od);
+    @Autowired(required = false)
+    private ClientsDTO clientsDTO;
+
+    public Clients addClients(ClientsModel clientsModel) {
+       Clients client = this.clientsDTO.modelToEntity(clientsModel);
         return this.clientRepository.save(client);
     }
 
-    public ClientDto mapToDto(Clients org) {
-        ClientDto od = modelMapper.map(org,ClientDto.class);
-        return od;
+    public Clients getProject(int c_id) {
+
+        Optional<Clients> clients = Optional.ofNullable(this.clientRepository.findClientsById(c_id));
+//        Project projectModel=projectDTO.modelToEntity(project);
+        if(clients.isPresent()) {
+            return clients.get();
+        }
+        else {
+            throw new Exception("Project not found");
+        }
     }
 
-    public Clients mapToEntity(ClientDto od) {
-        Clients org = modelMapper.map(od, Clients.class);
-        return org;
-    }
 }

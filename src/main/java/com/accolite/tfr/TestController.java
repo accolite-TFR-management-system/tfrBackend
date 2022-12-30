@@ -1,17 +1,13 @@
 package com.accolite.tfr;
 
-import com.accolite.tfr.dto.FeatureDto;
-import com.accolite.tfr.dto.OrganisationDto;
-import com.accolite.tfr.dto.ProjectDto;
-import com.accolite.tfr.dto.ResourceDto;
-import com.accolite.tfr.model.*;
-import com.accolite.tfr.service.Service;
-import org.springframework.beans.BeanUtils;
+import com.accolite.tfr.DTO.ResourceDTO;
+import com.accolite.tfr.DTOmodel.*;
+import com.accolite.tfr.entity.*;
+import com.accolite.tfr.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -26,20 +22,49 @@ public class TestController {
 
     @Autowired
     private Service service;
-    @PostMapping("/feature")
-    private  ResponseEntity<FeatureDto> addFeature(@RequestBody Feature feature){
-        Feature newFeature = this.service.addFeature(feature);
-        FeatureDto featureDto = new FeatureDto();
-        BeanUtils.copyProperties(newFeature,featureDto);
-        return ResponseEntity.ok().body(featureDto);
-    }
-    @PostMapping("/project")
-    private  ResponseEntity<ProjectDto> addProject(@RequestBody Project project){
-        Project newProject = this.service.addProject(project);
-        ProjectDto projectDto = new ProjectDto();
-        BeanUtils.copyProperties(newProject,projectDto);
-        return ResponseEntity.ok().body(projectDto);
-    }
+    @Autowired
+    private AccoliteClientMNServiceImp accoliteClientMNServiceImp;
+    @Autowired
+    private ClientServiceImp clientServiceImp;
+    @Autowired
+    private FeatureServiceImp featureServiceImp;
+    @Autowired
+    private GoalsServiceImp goalsServiceImp;
+    @Autowired
+    private MilestoneServiceImp milestoneServiceImp;
+    @Autowired
+    private OrganisationServiceImp organisationServiceImp;
+    @Autowired
+    private ProjectServiceImp projectServiceImp;
+    @Autowired
+    private ProjectStatusServiceImp projectStatusServiceImp;
+    @Autowired
+    private ResourceHistoryServiceImp resourceHistoryServiceImp;
+    @Autowired
+    private ResourceServiceImp resourceServiceImp;
+    @Autowired
+    private RiskServiceImp riskServiceImp;
+    @Autowired
+    private DesignationServiceImp designationServiceImp;
+    @Autowired(required = false)
+//    @Autowired
+    private ResourceDTO resourceDTO;
+//    @PostMapping("/feature")
+//    private  ResponseEntity<FeatureModel> addFeature(@RequestBody Feature feature){
+//        Feature newFeature = this.service.addFeature(feature);
+////        FeatureDto featureDto = new FeatureDto();
+////        BeanUtils.copyProperties(newFeature,featureDto);
+//        FeatureModel fdto = featureServiceImp.mapToDto(newFeature);
+//        return ResponseEntity.ok().body(fdto);
+//    }
+//    @PostMapping("/project")
+//    private  ResponseEntity<ProjectModel> addProject(@RequestBody Project project){
+//        Project newProject = this.service.addProject(project);
+////        ProjectDto projectDto = new ProjectDto();
+////        BeanUtils.copyProperties(newProject,projectDto);
+//        ProjectModel pdto = projectServiceImp.mapToDto(newProject);
+//        return ResponseEntity.ok().body(pdto);
+//    }
 //    @PostMapping("/addResource")
 //    private ResponseEntity<ResourceDto> addResource(@RequestBody ResourceDto resourcedto){
 //        Resource resource = new Resource();
@@ -49,62 +74,86 @@ public class TestController {
 //        BeanUtils.copyProperties(newResource,resourceDto);
 //        return ResponseEntity.ok().body(resourceDto);
 //    }
-    @PostMapping("/addDivision")
-    private ResponseEntity<OrganisationDto> addDivision(@RequestBody Organisation organisation){
-        Organisation newOrganisation = this.service.addOrganisation(organisation);
-        OrganisationDto organisationDto = new OrganisationDto();
-        BeanUtils.copyProperties(newOrganisation,organisationDto);
-        return ResponseEntity.ok().body(organisationDto);
-    }
-    @PostMapping("/addProjectStatus")
-    private  ResponseEntity<ProjectStatus> addProjectStatus(@RequestBody ProjectStatus projectStatus){
-        ProjectStatus newProjectStatus = this.service.addProjectStatus(projectStatus);
-        return ResponseEntity.ok().body(newProjectStatus);
-    }
+//    @PostMapping("/addDivision")
+//    private ResponseEntity<OrganisationModel> addDivision(@RequestBody Organisation organisation){
+//        Organisation newOrganisation = this.service.addOrganisation(organisation);
+//        OrganisationModel odto = organisationServiceImp.mapToDto(newOrganisation);
+////        OrganisationDto organisationDto = new OrganisationDto();
+////        BeanUtils.copyProperties(newOrganisation,organisationDto);
+//        return ResponseEntity.ok().body(odto);
+//    }
+//    @PostMapping("/addProjectStatus")
+//    private  ResponseEntity<ProjectStatusModel> addProjectStatus(@RequestBody ProjectStatus projectStatus){
+//        ProjectStatus newProjectStatus = this.service.addProjectStatus(projectStatus);
+//        ProjectStatusModel psdto = projectStatusServiceImp.mapToDto(newProjectStatus);
+//        return ResponseEntity.ok().body(psdto);
+//    }
     @PostMapping("/addResourceFeature")
     private  ResponseEntity<ResourceFeatureMN> addResourceFeatureMN(@RequestBody ResourceFeatureMN resourceFeatureMN){
         ResourceFeatureMN newResourceFeatureMN = this.service.addResourceFeatureMN(resourceFeatureMN);
         return ResponseEntity.ok().body(newResourceFeatureMN);
     }
-    @PostMapping("/addMilestone")
-    private ResponseEntity<Milestone> addMilestone(@RequestBody Milestone milestone){
-        Milestone newMilestone = this.service.addMilestone(milestone);
-        return ResponseEntity.ok().body(newMilestone);
-    }
-    @PostMapping("/addClient")
-    private ResponseEntity<Clients> addClient(@RequestBody Clients Client){
-        Clients newClient = this.service.addClient(Client);
-        return ResponseEntity.ok().body(newClient);
-    }
+//    @PostMapping("/addMilestone")
+//    private ResponseEntity<MilestoneModel> addMilestone(@RequestBody Milestone milestone){
+//        Milestone newMilestone = this.service.addMilestone(milestone);
+//        MilestoneModel mdto = milestoneServiceImp.mapToDto(newMilestone);
+//        return ResponseEntity.ok().body(mdto);
+//    }
+//    @PostMapping("/addClient")
+//    private ResponseEntity<ClientsModel> addClient(@RequestBody Clients Client){
+//        Clients newClient = this.service.addClient(Client);
+//        ClientsModel cdto = clientServiceImp.mapToDto(newClient);
+//        return ResponseEntity.ok().body(cdto);
+//    }
     @PostMapping("/addAccoliteClientMN")
     private ResponseEntity<AccoliteClientMN> addAccoliteClientMN(@RequestBody AccoliteClientMN accoliteClientMN){
         AccoliteClientMN newAccoliteClientMN = this.service.addAccoliteClientMN(accoliteClientMN);
+        AccoliteClientMNModel acdto = accoliteClientMNServiceImp.mapToDto(newAccoliteClientMN);
         return ResponseEntity.ok().body(newAccoliteClientMN);
     }
-    @PostMapping("/addDesignation")
-    private ResponseEntity<Designation> addAccoliteClientMN(@RequestBody Designation designation){
-        Designation newDesignation = this.service.addDesignation(designation);
-        return ResponseEntity.ok().body(newDesignation);
+//    @PostMapping("/addDesignation")
+//    private ResponseEntity<DesignationModel> addAccoliteClientMN(@RequestBody Designation designation){
+//        Designation newDesignation = this.service.addDesignation(designation);
+//        DesignationModel ddto = this.designationServiceImp.mapToDto(newDesignation);
+//        return ResponseEntity.ok().body(ddto);
+//    }
+//    @PostMapping("/addResourceHistory")
+//    private ResponseEntity<ResourceHistoryModel> addResourceHistory(@RequestBody ResourceHistory resourceHistory){
+//        ResourceHistory newResourceHistory = this.service.addResourceHistory(resourceHistory);
+//        ResourceHistoryModel rhdto = resourceHistoryServiceImp.mapToDto(newResourceHistory);
+//        return ResponseEntity.ok().body(rhdto);
+//    }
+//    @PostMapping("/addRisk")
+//    private ResponseEntity<RiskModel> addRisk(@RequestBody Risk risk){
+//        Risk newRisk= this.service.addRisk(risk);
+//        RiskModel rdto = riskServiceImp.mapToDto(newRisk);
+//        return ResponseEntity.ok().body(rdto);
+//    }
+//    @PostMapping("/addGoal")
+//    private ResponseEntity<GoalsModel> addGoal(@RequestBody Goals goals){
+//        Goals newGoal= this.service.addGoal(goals);
+//        GoalsModel gdto = goalsServiceImp.mapToDto(newGoal);
+//        return ResponseEntity.ok().body(gdto);
+//    }
+//    @PostMapping("/addResource")
+//    private ResponseEntity<ResourceModel> addResource(@RequestBody Resource resource){
+//        Resource newResource= this.service.addResource(resource);
+//        ResourceModel rdto = resourceServiceImp.mapToDto(newResource);
+//        return ResponseEntity.ok().body(rdto);
+//    }
+//    @PostMapping("/addResource")
+//    private ResponseEntity<ResourceModel> addResource(@RequestBody ResourceModel resourceModel) {
+//        Resource resource = this.resourceServiceImp.addResource(resourceModel);
+//        ResourceModel resourceModel1 = this.resourceDTO.entityToModel(resource);
+//        return ResponseEntity.ok().body(resourceModel1);
+//    }
+    @GetMapping("/getResource/{desg_id}")
+    private ResponseEntity<List<Resource>> getResource(@PathVariable int desg_id) {
+        return ResponseEntity.ok().body(this.resourceServiceImp.findResourceByDesignationId(desg_id));
     }
-    @PostMapping("/addResourceHistory")
-    private ResponseEntity<ResourceHistory> addResourceHistory(@RequestBody ResourceHistory resourceHistory){
-        ResourceHistory newResourceHistory = this.service.addResourceHistory(resourceHistory);
-        return ResponseEntity.ok().body(newResourceHistory);
-    }
-    @PostMapping("/addRisk")
-    private ResponseEntity<Risk> addRisk(@RequestBody Risk risk){
-        Risk newRisk= this.service.addRisk(risk);
-        return ResponseEntity.ok().body(newRisk);
-    }
-    @PostMapping("/addGoal")
-    private ResponseEntity<Goals> addGoal(@RequestBody Goals goals){
-        Goals newGoal= this.service.addGoal(goals);
-        return ResponseEntity.ok().body(newGoal);
-    }
-    @PostMapping("/addResource")
-    private ResponseEntity<Resource> addResource(@RequestBody Resource resource){
-        Resource newResource= this.service.addResource(resource);
-        return ResponseEntity.ok().body(newResource);
+    @PostMapping("/addResourceProjectMN")
+    private ResponseEntity<ResourceProjectMN> addResourceProjectMN(@RequestBody ResourceProjectMN resourceProjectMN) {
+        return ResponseEntity.ok().body(this.service.addResourceProjectMN(resourceProjectMN));
     }
 
 }

@@ -1,32 +1,32 @@
 package com.accolite.tfr.service;
 
-import com.accolite.tfr.dto.ResourceDto;
-import com.accolite.tfr.model.Resource;
+import com.accolite.tfr.DTO.ResourceDTO;
+import com.accolite.tfr.DTOmodel.ResourceModel;
+import com.accolite.tfr.entity.Resource;
 import com.accolite.tfr.repository.ResourceRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.util.List;
+
 @Service
+@Transactional
 public class ResourceServiceImp implements ResourceService{
 
     @Autowired
     private ResourceRepository resourceRepository;
-    @Autowired
-    public ModelMapper modelMapper;
+    @Autowired(required = false)
+    public ResourceDTO resourceDTO;
 
-    public Resource addResource(ResourceDto od) {
-        Resource resource = this.mapToEntity(od);
-        return this.resourceRepository.save(resource);
+    @Override
+    public Resource addResource(ResourceModel resourceModel) {
+        Resource resourceEntity = resourceDTO.modelToEntity(resourceModel);
+        return resourceRepository.save(resourceEntity);
     }
 
-    public ResourceDto mapToDto(Resource org) {
-        ResourceDto od = modelMapper.map(org,ResourceDto.class);
-        return od;
-    }
-
-    public Resource mapToEntity(ResourceDto od) {
-        Resource org = modelMapper.map(od, Resource.class);
-        return org;
+    public List<Resource> findResourceByDesignationId(int desg_id) {
+        List<Resource> resourceList = this.resourceRepository.findResourceByDesignationId(desg_id);
+        return resourceList;
     }
 }

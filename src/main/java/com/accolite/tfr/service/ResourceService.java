@@ -1,12 +1,13 @@
 package com.accolite.tfr.service;
 
 
-import com.accolite.tfr.dto.ResourceDto;
-import com.accolite.tfr.model.Resource;
+import com.accolite.tfr.DTOmodel.ResourceModel;
+import com.accolite.tfr.entity.Resource;
+
+import java.util.List;
 
 public interface ResourceService {
 
-    public Resource addResource(ResourceDto orgDto);
-    public ResourceDto mapToDto(Resource org);
-    public Resource mapToEntity(ResourceDto od);
+    public Resource addResource(ResourceModel resourceModel);
+    public List<Resource> findResourceByDesignationId(int desg_id);
 }

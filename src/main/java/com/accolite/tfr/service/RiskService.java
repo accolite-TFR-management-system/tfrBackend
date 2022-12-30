@@ -1,12 +1,10 @@
 package com.accolite.tfr.service;
 
 
-import com.accolite.tfr.dto.RiskDto;
-import com.accolite.tfr.model.Risk;
+import com.accolite.tfr.DTOmodel.RiskModel;
+import com.accolite.tfr.entity.Risk;
 
 public interface RiskService {
 
-    public Risk addRisk(RiskDto orgDto);
-    public RiskDto mapToDto(Risk org);
-    public Risk mapToEntity(RiskDto od);
+    public Risk addRisk(RiskModel orgDto);
 }

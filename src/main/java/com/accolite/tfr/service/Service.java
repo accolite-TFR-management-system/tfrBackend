@@ -1,7 +1,7 @@
 package com.accolite.tfr.service;
 
 import com.accolite.tfr.exception.Exception;
-import com.accolite.tfr.model.*;
+import com.accolite.tfr.entity.*;
 import com.accolite.tfr.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -36,6 +36,8 @@ public class Service {
     private ResourceRepository resourceRepository;
     @Autowired
     private ResourceHistoryRepository resourceHistoryRepository;
+    @Autowired
+    private ResourceProjectMNRepository resourceProjectMNRepository;
 
     public Project addProject(Project project) {
         return this.projectRepository.save(project);
@@ -99,6 +101,9 @@ public class Service {
         return this.goalRepository.save(goals);
     }
 
+    public ResourceProjectMN addResourceProjectMN(ResourceProjectMN resourceProjectMN) {
+        return this.resourceProjectMNRepository.save(resourceProjectMN);
+    }
 //    public Project addProject(Project project) {
 //        return this.projectRepository.save(project);
 //    }

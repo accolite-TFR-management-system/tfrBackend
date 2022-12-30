@@ -1,12 +1,14 @@
 package com.accolite.tfr.service;
 
 
-import com.accolite.tfr.dto.MilestoneDto;
-import com.accolite.tfr.model.Milestone;
+import com.accolite.tfr.DTOmodel.MilestoneModel;
+import com.accolite.tfr.entity.Milestone;
+
+import java.util.List;
 
 public interface MilestoneService {
 
-    public Milestone addMilestone(MilestoneDto orgDto);
-    public MilestoneDto mapToDto(Milestone org);
-    public Milestone mapToEntity(MilestoneDto od);
+    public Milestone addMilestone(MilestoneModel orgDto);
+
+    public List<Milestone> findMilestoneByProjectId(int proj_id);
 }

@@ -1,9 +1,9 @@
 package com.accolite.tfr.service;
 
-import com.accolite.tfr.dto.DesignationDto;
-import com.accolite.tfr.model.Designation;
+import com.accolite.tfr.DTO.DesignationDTO;
+import com.accolite.tfr.DTOmodel.DesignationModel;
+import com.accolite.tfr.entity.Designation;
 import com.accolite.tfr.repository.DesignationRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,21 +12,12 @@ public class DesignationServiceImp implements DesignationService{
 
     @Autowired
     private DesignationRepository designationRepository;
-    @Autowired
-    public ModelMapper modelMapper;
+    @Autowired(required = false)
+    public DesignationDTO designationDTO;
 
-    public Designation addDesignation(DesignationDto od) {
-        Designation designation = this.mapToEntity(od);
+    public Designation addDesignation(DesignationModel od) {
+        Designation designation = this.designationDTO.modelToEntity(od);
         return this.designationRepository.save(designation);
     }
 
-    public DesignationDto mapToDto(Designation org) {
-        DesignationDto od = modelMapper.map(org,DesignationDto.class);
-        return od;
-    }
-
-    public Designation mapToEntity(DesignationDto od) {
-        Designation org = modelMapper.map(od,Designation.class);
-        return org;
-    }
 }

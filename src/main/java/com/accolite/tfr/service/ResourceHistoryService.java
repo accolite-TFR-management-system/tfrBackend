@@ -1,12 +1,11 @@
 package com.accolite.tfr.service;
 
 
-import com.accolite.tfr.dto.ResourceHistoryDto;
-import com.accolite.tfr.model.ResourceHistory;
+import com.accolite.tfr.DTOmodel.ResourceHistoryModel;
+import com.accolite.tfr.entity.ResourceHistory;
 
 public interface ResourceHistoryService {
 
-    public ResourceHistory addResourceHistory(ResourceHistoryDto orgDto);
-    public ResourceHistoryDto mapToDto(ResourceHistory org);
-    public ResourceHistory mapToEntity(ResourceHistoryDto od);
+    public ResourceHistory addResourceHistory(ResourceHistoryModel orgDto);
+
 }

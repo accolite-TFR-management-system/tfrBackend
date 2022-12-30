@@ -1,12 +1,10 @@
 package com.accolite.tfr.service;
 
-import com.accolite.tfr.dto.AccoliteClientMNDto;
-import com.accolite.tfr.dto.OrganisationDto;
-import com.accolite.tfr.model.AccoliteClientMN;
-import com.accolite.tfr.model.Organisation;
+import com.accolite.tfr.DTOmodel.AccoliteClientMNModel;
+import com.accolite.tfr.entity.AccoliteClientMN;
 
 public interface AccoliteClientMNService {
-    public AccoliteClientMN addAccoliteCientMN(AccoliteClientMNDto accoliteClientMNDto);
-    public AccoliteClientMNDto mapToDto(AccoliteClientMN org);
-    public AccoliteClientMN mapToEntity(AccoliteClientMNDto dto);
+    public AccoliteClientMN addAccoliteClientMN(AccoliteClientMNModel accoliteClientMNModel);
+    public AccoliteClientMNModel mapToDto(AccoliteClientMN org);
+    public AccoliteClientMN mapToEntity(AccoliteClientMNModel dto);
 }
