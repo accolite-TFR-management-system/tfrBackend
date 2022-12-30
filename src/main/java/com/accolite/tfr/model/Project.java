@@ -1,14 +1,16 @@
 package com.accolite.tfr.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Data
 @Table(name = "project")
 public class Project {
     @Id
@@ -38,17 +40,17 @@ public class Project {
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="division_id",referencedColumnName = "id")
     private Organisation division;
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
-    @JoinColumn(name="client_id",referencedColumnName = "id")
-    private Clients Client;
-//    @Column(name="client_id")
-//    private int client_id;
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
-    @JoinColumn(name="department_head_id",referencedColumnName = "id")
-    private Resource ProjectForDep;
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
-    @JoinColumn(name="resource_lead_id",referencedColumnName = "id")
-    private Resource ProjectForLead;
+//    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+//    @JoinColumn(name="client_id",referencedColumnName = "id")
+//    private Clients client;
+////    @Column(name="client_id")
+////    private int client_id;
+//    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+//    @JoinColumn(name="department_head_id",referencedColumnName = "id")
+//    private Resource dephead;
+//    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+//    @JoinColumn(name="resource_lead_id",referencedColumnName = "id")
+//    private Resource proLead;
 
 //    @Column(name="resource_lead_id")
 //    private int resource_lead_id;
@@ -64,26 +66,59 @@ public class Project {
     @JoinColumn(name="created_by",referencedColumnName = "id")
     private Resource createdBy;
     @Column(name="invoicing_status")
+    @JsonIgnore
     private String invoicing_status;
 //
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="spoc_id",referencedColumnName = "id")
     private Resource spoc;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+    @JoinColumn(name="department_head_id",referencedColumnName = "id")
+    private Resource depHead;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+    @JoinColumn(name="resource_lead_id",referencedColumnName = "id")
+    private Resource projectLead;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+    @JoinColumn(name="client_id",referencedColumnName = "id")
+    private Resource client;
     @OneToMany(mappedBy = "project")
+    @JsonIgnore
     private List<Milestone> milestoneList;
     @OneToMany(mappedBy = "ResourceHistoryProject")
+    @JsonIgnore
     private List<ResourceHistory> ResourceHistoryProject;
     @OneToMany(mappedBy = "ProjectRisk")
+    @JsonIgnore
     private List<Risk> ProjectRisk;
-    @OneToMany(mappedBy = "CreatedBy")
-    private List<Risk> CreatedBy;
-    @OneToMany(mappedBy = "ModifiedBy")
-    private List<Risk> ModifiedBy;
+//    @OneToMany(mappedBy = "RiskCreatedBy")
+//    @JsonIgnore
+//    private List<Risk> RiskCreatedBy;
+//    @OneToMany(mappedBy = "ModifiedBy")
+//    @JsonIgnore
+//    private List<Risk> ModifiedBy;
 
 
-    @OneToMany(mappedBy = "Project")
-//    @JsonBackReference(value="ProjectForDep")
+    @OneToMany(mappedBy = "project")
+    @JsonIgnore
     private List<ProjectStatus> listOfStatus;
 
+
+    @ManyToMany(fetch = FetchType.LAZY,cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "resource_project_mn_table",
+            joinColumns = { @JoinColumn(name = "project_id") },
+            inverseJoinColumns = { @JoinColumn(name = "resource_id") }
+    )
+    //@JsonManagedReference
+    private Set<Resource> resource = new HashSet<>();
+
+
+    public Set<Resource> getResource() {
+        return resource;
+    }
+
+    public void setResource(Set<Resource> project) {
+        this.resource = project;
+    }
 }

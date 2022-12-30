@@ -1,10 +1,8 @@
 package com.accolite.tfr;
 
-import com.accolite.tfr.dto.FeatureDto;
-import com.accolite.tfr.dto.OrganisationDto;
-import com.accolite.tfr.dto.ProjectDto;
-import com.accolite.tfr.dto.ResourceDto;
+import com.accolite.tfr.dto.*;
 import com.accolite.tfr.model.*;
+import com.accolite.tfr.service.DesignationService;
 import com.accolite.tfr.service.Service;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/tfr")
@@ -24,6 +23,8 @@ public class TestController {
         return "Working Successfully";
     }
 
+    @Autowired
+    private DesignationService designationService;
     @Autowired
     private Service service;
     @PostMapping("/feature")
@@ -40,15 +41,6 @@ public class TestController {
         BeanUtils.copyProperties(newProject,projectDto);
         return ResponseEntity.ok().body(projectDto);
     }
-//    @PostMapping("/addResource")
-//    private ResponseEntity<ResourceDto> addResource(@RequestBody ResourceDto resourcedto){
-//        Resource resource = new Resource();
-//        BeanUtils.copyProperties(resourcedto,resource);
-//        Resource newResource = this.service.addResource(resource);
-//        ResourceDto resourceDto = new ResourceDto();
-//        BeanUtils.copyProperties(newResource,resourceDto);
-//        return ResponseEntity.ok().body(resourceDto);
-//    }
     @PostMapping("/addDivision")
     private ResponseEntity<OrganisationDto> addDivision(@RequestBody Organisation organisation){
         Organisation newOrganisation = this.service.addOrganisation(organisation);
@@ -81,11 +73,11 @@ public class TestController {
         AccoliteClientMN newAccoliteClientMN = this.service.addAccoliteClientMN(accoliteClientMN);
         return ResponseEntity.ok().body(newAccoliteClientMN);
     }
-    @PostMapping("/addDesignation")
-    private ResponseEntity<Designation> addAccoliteClientMN(@RequestBody Designation designation){
-        Designation newDesignation = this.service.addDesignation(designation);
-        return ResponseEntity.ok().body(newDesignation);
-    }
+//    @PostMapping("/addDesignation")
+//    private ResponseEntity<Designation> addAccoliteClientMN(@RequestBody Designation designation){
+//        Designation newDesignation = this.service.addDesignation(designation);
+//        return ResponseEntity.ok().body(newDesignation);
+//    }
     @PostMapping("/addResourceHistory")
     private ResponseEntity<ResourceHistory> addResourceHistory(@RequestBody ResourceHistory resourceHistory){
         ResourceHistory newResourceHistory = this.service.addResourceHistory(resourceHistory);
@@ -106,5 +98,95 @@ public class TestController {
         Resource newResource= this.service.addResource(resource);
         return ResponseEntity.ok().body(newResource);
     }
-
+//    @GetMapping("/getResource/{r_id}")
+//    private ResponseEntity<Resource> getResource(@PathVariable int r_id){
+//        Resource newResource= this.service.getResource(r_id);
+//        return ResponseEntity.ok().body(newResource);
+//    }
+    @PostMapping("/addDesignation")
+    private ResponseEntity<DesignationDto> addAccoliteClientMN(@RequestBody DesignationDto dto){
+        //Designation designation = this.designationService.mapToEntity(dto);
+        Designation newDesignation = this.designationService.addDesignation(dto);
+        DesignationDto ddto = this.designationService.mapToDto(newDesignation);
+        return ResponseEntity.ok().body(ddto);
+    }
+    @GetMapping("/getProject/{p_id}")
+    private ResponseEntity<Project> getProject(@PathVariable int p_id){
+        Project newProject = this.service.getProject(p_id);
+        return ResponseEntity.ok().body(newProject);
+    }
+    @GetMapping("/getClient/{c_id}")
+    private ResponseEntity<Clients> getClient(@PathVariable int c_id){
+        Clients newClient = this.service.getClient(c_id);
+        return  ResponseEntity.ok().body(newClient);
+    }
+    @GetMapping("/getMilestone/{p_id}")
+    private ResponseEntity<List<Milestone>> getMilestone(@PathVariable int p_id){
+        List<Milestone> newMilestone = this.service.getMilestone(p_id);
+        return  ResponseEntity.ok().body(newMilestone);
+    }
+    @GetMapping("/getGoal/{g_id}")
+    private ResponseEntity<Goals> getGoal(@PathVariable int g_id){
+        Goals newGoal = this.service.getGoal(g_id);
+        return  ResponseEntity.ok().body(newGoal);
+    }
+    @GetMapping("/Resource/{d_id}")
+    private ResponseEntity<List<Resource>> getResources(@PathVariable int d_id){
+        List<Resource> newResources = this.service.getResources(d_id);
+        return  ResponseEntity.ok().body(newResources);
+    }
+    @GetMapping("/Goals/{m_id}")
+    private ResponseEntity<List<Goals>> getGoals(@PathVariable int m_id){
+        List<Goals> newGoals= this.service.getGoals(m_id);
+        return  ResponseEntity.ok().body(newGoals);
+    }
+    @GetMapping("/ResourceFeatureList/{r_id}")
+    private ResponseEntity<List<ResourceFeatureMN>> getResourceFeatureList(@PathVariable int r_id){
+        List<ResourceFeatureMN> newResourceFeatureMN= this.service.getResourceFeatureMN(r_id);
+        return  ResponseEntity.ok().body(newResourceFeatureMN);
+    }
+    @PostMapping("/ResourceProjectMN")
+    private  ResponseEntity<ResourceProjectMN> addResourceProjectMN(@RequestBody ResourceProjectMN resourceProjectMN){
+        ResourceProjectMN newResourceProjectMN = this.service.addResourceProjectMN(resourceProjectMN);
+        return  ResponseEntity.ok().body(newResourceProjectMN);
+    }
+    @GetMapping("/getProjectStatus/{p_id}")
+    private  ResponseEntity<List<ProjectStatus>> getProjectStatus(@PathVariable int p_id){
+        List<ProjectStatus> newProjectStatus = this.service.getProjectStatus(p_id);
+        return  ResponseEntity.ok().body(newProjectStatus);
+    }
+    @GetMapping("/getRisk/{p_id}")
+    private ResponseEntity<List<Risk>> getRisk(@PathVariable int p_id) {
+        List<Risk> newRisk = this.service.getRisk(p_id);
+        return ResponseEntity.ok().body(newRisk);
+    }
+    @GetMapping("/getResourceHistoryByRID/{r_id}")
+    private  ResponseEntity<List<ResourceHistory>> getResourceHistoryByResource(@PathVariable int r_id){
+        List<ResourceHistory> newList = this.service.getResourceHistoryByResourceId(r_id);
+        return ResponseEntity.ok().body(newList);
+    }
+    @GetMapping("/getResourceHistoryByPID/{p_id}")
+    private  ResponseEntity<List<ResourceHistory>> getResourceHistoryByProject(@PathVariable int p_id){
+        List<ResourceHistory> newList = this.service.getResourceHistoryByProjectId(p_id);
+        return ResponseEntity.ok().body(newList);
+    }
+    @PostMapping("/add/resource/{resourceId}/project/{projectId}")
+    private ResponseEntity<Project>  addResourceToProject(@PathVariable("resourceId") int employeeId, @PathVariable("projectId") int projectId)
+    {
+        return service.addEmployeeToProject(employeeId, projectId);
+    }
+    @PostMapping("/add/resource/{resourceId}/feature/{featureId}")
+    private ResponseEntity<Feature>  addResourceToFeature(@PathVariable("resourceId") int resourceId, @PathVariable("featureId") int featureId)
+    {
+        return service.addEmployeeToFeature(resourceId, featureId);
+    }
+    @PostMapping("/add/resource/{resourceId}/client/{clientId}")
+    private ResponseEntity<Clients>  addResourceToClient(@PathVariable("resourceId") int resourceId, @PathVariable("clientId") int clientId)
+    {
+        return service.addEmployeeToClient(resourceId, clientId);
+    }
+//    @GetMapping("/get/resource/{resourceId}/project")
+//    private ResponseEntity<Set<Resource>> getResourcesOnProject(@PathVariable("projectId") int ProjectId){
+//        return service.getResourcesOnProject(ProjectId);
+//    }
 }

@@ -1,5 +1,6 @@
 package com.accolite.tfr.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -30,11 +31,14 @@ public class Milestone {
     private int weightage;
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="created_by",referencedColumnName = "id")
+
     private Resource resource;
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="project_id",referencedColumnName = "id")
+
     private Project project;
-    @OneToMany(mappedBy = "Goals")
+    @OneToMany(mappedBy = "Milestone")
+    @JsonIgnore
     private List<Goals> GoalList;
     public int getId() {
         return id;
