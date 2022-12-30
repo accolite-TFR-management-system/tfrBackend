@@ -1,11 +1,13 @@
-package com.accolite.tfr.entity;
+package com.accolite.tfr.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -25,26 +27,44 @@ public class Clients {
     private Date date_of_add;
 //    @Column(name = "created_by")
 //    private int created_by;
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
-    @JoinColumn(name="created_by",referencedColumnName = "id")
-    private Resource createdBy;
+@ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+@JoinColumn(name="created_by",referencedColumnName = "id")
+private Resource createdBy;
 //    @Column(name = "modified_by")
 //    private int modified_by;
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
-    @JoinColumn(name="modified_by",referencedColumnName = "id")
-    private Resource modifiedBy;
+@ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+@JoinColumn(name="modified_by",referencedColumnName = "id")
+private Resource modifiedBy;
 //    @Column(name = "date_of_modify")
 //    private Date date_of_modified;
 
-    @OneToMany(mappedBy = "Client")
+    @OneToMany(mappedBy = "client")
     @JsonIgnore
-//    @JsonBackReference(value="ProjectForLead")
     private List<Project> clientList;
-    public int getId() {
-        return id;
+
+    public Set<Resource> getResourcec() {
+        return resourcec;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setResourcec(Set<Resource> resourcec) {
+        this.resourcec = resourcec;
     }
+
+    @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.MERGE, CascadeType. DETACH})
+    @JoinTable(
+            name = "resource_client_mn_table",
+            joinColumns = { @JoinColumn(name = "client_id") },
+            inverseJoinColumns = { @JoinColumn(name = "resource_id") }
+    )
+    //@JsonManagedReference
+    private Set<Resource> resourcec = new HashSet<>();
+
+
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 }

@@ -15,7 +15,7 @@ public class ProjectStatus {
     private int id;
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="project_id",referencedColumnName = "id")
-    private Project Project;
+    private Project project;
     @Column(name = "status_type")
     private  String status_type;
     @Column(name = "status")
@@ -27,11 +27,11 @@ public class ProjectStatus {
     private int added_by;
 
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 }

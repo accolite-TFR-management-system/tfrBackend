@@ -1,4 +1,4 @@
-package com.accolite.tfr.entity;
+package com.accolite.tfr.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
@@ -11,12 +11,10 @@ import java.util.List;
 @Data
 @Table(name = "milestone")
 public class Milestone {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private int id;
-
     @Column(name = "name")
     private String name;
     @Column(name = "start_date")
@@ -31,16 +29,15 @@ public class Milestone {
     private Date date_of_add;
     @Column(name = "weightage")
     private int weightage;
-
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="created_by",referencedColumnName = "id")
-    private Resource resource;
 
+    private Resource resource;
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="project_id",referencedColumnName = "id")
-       private Project project;
 
-    @OneToMany(mappedBy = "Goals")
+    private Project project;
+    @OneToMany(mappedBy = "Milestone")
     @JsonIgnore
     private List<Goals> GoalList;
     public int getId() {

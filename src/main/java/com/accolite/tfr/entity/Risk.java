@@ -30,7 +30,7 @@ public class Risk {
 //    private int created_by;
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="created_by",referencedColumnName = "id")
-    private Resource CreatedBy;
+    private Resource riskCreatedBy;
 
     @Column(name = "date_of_add")
     private Date date_of_add;
@@ -38,16 +38,16 @@ public class Risk {
 //    private int modified_by;
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="modified_by",referencedColumnName = "id")
-    private Resource ModifiedBy;
+    private Resource modifiedBy;
 
     @Column(name = "date_of_modified")
     private Date date_of_modified;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 }

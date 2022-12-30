@@ -18,7 +18,7 @@ public class Goals {
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="milestone_id",referencedColumnName = "id")
-    private Milestone Goals;
+    private Milestone Milestone;
 
     @Column(name = "goal_name")
     private String name;
