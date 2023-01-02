@@ -124,70 +124,70 @@ public class Service {
         }
     }
 
-    public Clients getClient(int c_id) {
-        Optional<Clients> client = this.clientRepository.findById(c_id);
-        if(client.isPresent()){
-            return client.get();
-        }
-        else {
-            throw new Exception("Client not found");
-        }
-    }
+//    public Clients getClient(int c_id) {
+//        Optional<Clients> client = this.clientRepository.findById(c_id);
+//        if(client.isPresent()){
+//            return client.get();
+//        }
+//        else {
+//            throw new Exception("Client not found");
+//        }
+//    }
 
-    public List<Milestone> getMilestone(int p_id) {
-        Optional<Project> project = Optional.ofNullable(this.projectRepository.findProjectById(p_id));
-        if(project.isPresent()) {
-            Optional<List<Milestone>> milestone = Optional.ofNullable(this.milestoneRepository.findMilestoneByPId(p_id));
-            if (milestone.isPresent()) {
-                return milestone.get();
-            } else {
-                throw new Exception("Milestone not found with project id : " + p_id);
-            }
-        }
-        else {
-            throw new Exception("Project not found with id : " + p_id);
-        }
-    }
+//    public List<Milestone> getMilestone(int p_id) {
+//        Optional<Project> project = Optional.ofNullable(this.projectRepository.findProjectById(p_id));
+//        if(project.isPresent()) {
+//            Optional<List<Milestone>> milestone = Optional.ofNullable(this.milestoneRepository.findMilestoneByPId(p_id));
+//            if (milestone.isPresent()) {
+//                return milestone.get();
+//            } else {
+//                throw new Exception("Milestone not found with project id : " + p_id);
+//            }
+//        }
+//        else {
+//            throw new Exception("Project not found with id : " + p_id);
+//        }
+//    }
 
-    public Goals getGoal(int g_id) {
-        Optional<Goals> goal = this.goalRepository.findById(g_id);
-        if(goal.isPresent()) {
-            return goal.get();
-        }
-        else {
-            throw new Exception("goal not found");
-        }
-    }
+//    public Goals getGoal(int g_id) {
+//        Optional<Goals> goal = this.goalRepository.findById(g_id);
+//        if(goal.isPresent()) {
+//            return goal.get();
+//        }
+//        else {
+//            throw new Exception("goal not found");
+//        }
+//    }
 
-    public List<Resource> getResources(int d_id) {
-        Optional<Designation> newDesignation =this.designationRepository.findById(d_id);
-        if(newDesignation.isPresent()) {
-            Optional<List<Resource>> newList = Optional.ofNullable(this.resourceRepository.findResourceByDesignationId(d_id));
-            if (newList.isPresent()) {
-                return newList.get();
-            } else {
-                throw new Exception("Resources not found");
-            }
-        }
-        else {
-            throw new Exception("Designation not found");
-        }
-    }
+//    public List<Resource> getResources(int d_id) {
+//        Optional<Designation> newDesignation =this.designationRepository.findById(d_id);
+//        if(newDesignation.isPresent()) {
+//            Optional<List<Resource>> newList = Optional.ofNullable(this.resourceRepository.findResourceByDesignationId(d_id));
+//            if (newList.isPresent()) {
+//                return newList.get();
+//            } else {
+//                throw new Exception("Resources not found");
+//            }
+//        }
+//        else {
+//            throw new Exception("Designation not found");
+//        }
+//    }
 
-    public List<Goals> getGoals(int m_id) {
-        Optional<Milestone> newMilestone =this.milestoneRepository.findById(m_id);
-        if(newMilestone.isPresent()) {
-            Optional<List<Goals>> newList = Optional.ofNullable(this.goalRepository.findResourceByMilestoneId(m_id));
-            if (newList.isPresent()) {
-                return newList.get();
-            } else {
-                throw new Exception("goals not found");
-            }
-        }
-        else {
-            throw new Exception("Milestone not found");
-        }
-    }
+//    public List<Goals> getGoals(int m_id) {
+//        Optional<Milestone> newMilestone =this.milestoneRepository.findById(m_id);
+//        if(newMilestone.isPresent()) {
+//            Optional<List<Goals>> newList = Optional.ofNullable(this.goalRepository.findResourceByMilestoneId(m_id));
+//            if (newList.isPresent()) {
+//                return newList.get();
+//            } else {
+//                throw new Exception("goals not found");
+//            }
+//        }
+//        else {
+//            throw new Exception("Milestone not found");
+//        }
+//    }
 
     public List<ResourceFeatureMN> getResourceFeatureMN(int r_id) {
         Optional<Resource> newResource =this.resourceRepository.findById(r_id);
@@ -208,110 +208,110 @@ public class Service {
         return  this.resourceProjectMNRepository.save(resourceProjectMN);
     }
 
-    public List<ProjectStatus> getProjectStatus(int p_id) {
-        Optional<Project> newProject = Optional.ofNullable(this.projectRepository.findProjectById(p_id));
-        if(newProject.isPresent()) {
-            Optional<List<ProjectStatus>> newList = Optional.ofNullable(this.projectStatusRepository.findProjectStatusByProjectId(p_id));
-            if (newList.isPresent()) {
-                return newList.get();
-            } else {
-                throw new Exception("project status not found");
-            }
-        }
-        else {
-            throw new Exception("project not found");
-        }
-    }
+//    public List<ProjectStatus> getProjectStatus(int p_id) {
+//        Optional<Project> newProject = Optional.ofNullable(this.projectRepository.findProjectById(p_id));
+//        if(newProject.isPresent()) {
+//            Optional<List<ProjectStatus>> newList = Optional.ofNullable(this.projectStatusRepository.findProjectStatusByProjectId(p_id));
+//            if (newList.isPresent()) {
+//                return newList.get();
+//            } else {
+//                throw new Exception("project status not found");
+//            }
+//        }
+//        else {
+//            throw new Exception("project not found");
+//        }
+//    }
 
-    public List<Risk> getRisk(int p_id) {
-        Optional<Project> newProject = Optional.ofNullable(this.projectRepository.findProjectById(p_id));
-        if(newProject.isPresent()) {
-            Optional<List<Risk>> newList = Optional.ofNullable(this.riskRepository.findRiskByProjectId(p_id));
-            if (newList.isPresent()) {
-                return newList.get();
-            } else {
-                throw new Exception("Risk  not found");
-            }
-        }
-        else {
-            throw new Exception("project not found");
-        }
-    }
+//    public List<Risk> getRisk(int p_id) {
+//        Optional<Project> newProject = Optional.ofNullable(this.projectRepository.findProjectById(p_id));
+//        if(newProject.isPresent()) {
+//            Optional<List<Risk>> newList = Optional.ofNullable(this.riskRepository.findRiskByProjectId(p_id));
+//            if (newList.isPresent()) {
+//                return newList.get();
+//            } else {
+//                throw new Exception("Risk  not found");
+//            }
+//        }
+//        else {
+//            throw new Exception("project not found");
+//        }
+//    }
 
-    public List<ResourceHistory> getResourceHistoryByResourceId(int r_id) {
-        Optional<Resource> newResource = Optional.ofNullable(this.resourceRepository.findResourceById(r_id));
-        if(newResource.isPresent()) {
-            Optional<List<ResourceHistory>> newList = Optional.ofNullable(this.resourceHistoryRepository.findResourceHistoryByResourceId(r_id));
-            if (newList.isPresent()) {
-                return newList.get();
-            } else {
-                throw new Exception("Resource HIstory  not found");
-            }
-        }
-        else {
-            throw new Exception("Resource not found");
-        }
-    }
-    public List<ResourceHistory> getResourceHistoryByProjectId(int p_id) {
-        Optional<Project> newProject = Optional.ofNullable(this.projectRepository.findProjectById(p_id));
-        if(newProject.isPresent()) {
-            Optional<List<ResourceHistory>> newList = Optional.ofNullable(this.resourceHistoryRepository.findResourceHistoryByProjectId(p_id));
-            if (newList.isPresent()) {
-                return newList.get();
-            } else {
-                throw new Exception("Resource History  not found");
-            }
-        }
-        else {
-            throw new Exception("Project not found");
-        }
-    }
+//    public List<ResourceHistory> getResourceHistoryByResourceId(int r_id) {
+//        Optional<Resource> newResource = Optional.ofNullable(this.resourceRepository.findResourceById(r_id));
+//        if(newResource.isPresent()) {
+//            Optional<List<ResourceHistory>> newList = Optional.ofNullable(this.resourceHistoryRepository.findResourceHistoryByResourceId(r_id));
+//            if (newList.isPresent()) {
+//                return newList.get();
+//            } else {
+//                throw new Exception("Resource HIstory  not found");
+//            }
+//        }
+//        else {
+//            throw new Exception("Resource not found");
+//        }
+//    }
+//    public List<ResourceHistory> getResourceHistoryByProjectId(int p_id) {
+//        Optional<Project> newProject = Optional.ofNullable(this.projectRepository.findProjectById(p_id));
+//        if(newProject.isPresent()) {
+//            Optional<List<ResourceHistory>> newList = Optional.ofNullable(this.resourceHistoryRepository.findResourceHistoryByProjectId(p_id));
+//            if (newList.isPresent()) {
+//                return newList.get();
+//            } else {
+//                throw new Exception("Resource History  not found");
+//            }
+//        }
+//        else {
+//            throw new Exception("Project not found");
+//        }
+//    }
 
-    public ResponseEntity<Project> addEmployeeToProject(int employeeId, int projectId) {
-        Optional<Resource> employeeOptional= Optional.ofNullable(this.resourceRepository.findResourceById(employeeId));
-        Optional<Project> projectOptional= Optional.ofNullable(this.projectRepository.findProjectById(projectId));
-        if(projectOptional.isPresent() && employeeOptional.isPresent())
-        {
-            Resource employee=employeeOptional.get();
-            Project project=projectOptional.get();
-            Set<Resource> s=project.getResource();
-            project.getResource().add(employee);
-            projectRepository.save(project);
-            return new ResponseEntity<Project>(project, HttpStatus.CREATED);
-        }
-        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
-    }
-
-    public ResponseEntity<Feature> addEmployeeToFeature(int resourceId, int featureId) {
-        Optional<Resource> employeeOptional= Optional.ofNullable(this.resourceRepository.findResourceById(resourceId));
-        Optional<Feature> FeatureOptional= Optional.ofNullable(this.featureRepository.findFeatureById(featureId));
-        if(FeatureOptional.isPresent() && employeeOptional.isPresent())
-        {
-            Resource employee=employeeOptional.get();
-            Feature feature=FeatureOptional.get();
-            Set<Resource> s=feature.getResourcef();
-            feature.getResourcef().add(employee);
-            featureRepository.save(feature);
-            return new ResponseEntity<Feature>(feature, HttpStatus.CREATED);
-        }
-        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
-
-    }
-
-    public ResponseEntity<Clients> addEmployeeToClient(int resourceId, int clientId) {
-        Optional<Resource> employeeOptional= Optional.ofNullable(this.resourceRepository.findResourceById(resourceId));
-        Optional<Clients> clientOptional= Optional.ofNullable(this.clientRepository.findClientById(clientId));
-        if(clientOptional.isPresent() && employeeOptional.isPresent())
-        {
-            Resource employee=employeeOptional.get();
-            Clients client=clientOptional.get();
-            Set<Resource> s=client.getResourcec();
-            client.getResourcec().add(employee);
-            clientRepository.save(client);
-            return new ResponseEntity<Clients>(client, HttpStatus.CREATED);
-        }
-        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
-    }
+//    public ResponseEntity<Project> addEmployeeToProject(int employeeId, int projectId) {
+//        Optional<Resource> employeeOptional= Optional.ofNullable(this.resourceRepository.findResourceById(employeeId));
+//        Optional<Project> projectOptional= Optional.ofNullable(this.projectRepository.findProjectById(projectId));
+//        if(projectOptional.isPresent() && employeeOptional.isPresent())
+//        {
+//            Resource employee=employeeOptional.get();
+//            Project project=projectOptional.get();
+//            Set<Resource> s=project.getResource();
+//            project.getResource().add(employee);
+//            projectRepository.save(project);
+//            return new ResponseEntity<Project>(project, HttpStatus.CREATED);
+//        }
+//        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+//    }
+//
+//    public ResponseEntity<Feature> addEmployeeToFeature(int resourceId, int featureId) {
+//        Optional<Resource> employeeOptional= Optional.ofNullable(this.resourceRepository.findResourceById(resourceId));
+//        Optional<Feature> FeatureOptional= Optional.ofNullable(this.featureRepository.findFeatureById(featureId));
+//        if(FeatureOptional.isPresent() && employeeOptional.isPresent())
+//        {
+//            Resource employee=employeeOptional.get();
+//            Feature feature=FeatureOptional.get();
+//            Set<Resource> s=feature.getResourcef();
+//            feature.getResourcef().add(employee);
+//            featureRepository.save(feature);
+//            return new ResponseEntity<Feature>(feature, HttpStatus.CREATED);
+//        }
+//        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+//
+//    }
+//
+//    public ResponseEntity<Clients> addEmployeeToClient(int resourceId, int clientId) {
+//        Optional<Resource> employeeOptional= Optional.ofNullable(this.resourceRepository.findResourceById(resourceId));
+//        Optional<Clients> clientOptional= Optional.ofNullable(this.clientRepository.findClientsById(clientId));
+//        if(clientOptional.isPresent() && employeeOptional.isPresent())
+//        {
+//            Resource employee=employeeOptional.get();
+//            Clients client=clientOptional.get();
+//            Set<Resource> s=client.getResourcec();
+//            client.getResourcec().add(employee);
+//            clientRepository.save(client);
+//            return new ResponseEntity<Clients>(client, HttpStatus.CREATED);
+//        }
+//        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+//    }
 //    public ResponseEntity<Set<Resource>> getResourcesOnProject(int projectId){
 //        Optional<Project> projectOptional= Optional.ofNullable(this.projectRepository.findProjectById(projectId));
 //        Set<Resource> list = new HashSet<>();

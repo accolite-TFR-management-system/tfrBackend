@@ -1,6 +1,6 @@
 package com.accolite.tfr.DTO;
 
-import com.accolite.tfr.entity.Project;
+import com.accolite.tfr.model.Project;
 import com.accolite.tfr.DTOmodel.ProjectModel;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;

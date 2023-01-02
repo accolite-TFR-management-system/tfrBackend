@@ -2,7 +2,7 @@ package com.accolite.tfr.controller;
 
 
 import com.accolite.tfr.DTO.ProjectDTO;
-import com.accolite.tfr.entity.Project;
+import com.accolite.tfr.model.Project;
 import com.accolite.tfr.DTOmodel.ProjectModel;
 import com.accolite.tfr.repository.ProjectRepository;
 import com.accolite.tfr.service.ProjectServiceImp;
@@ -38,7 +38,7 @@ public class ProjectController {
     }
 
     @GetMapping("/getAllProjects")
-    private ResponseEntity<List<ProjectModel>> getAllProject(){
+    private ResponseEntity<List<ProjectModel>> getAllProjects(){
         List<Project> newProjectList = this.projectServiceImp.getAllProjects();
         List<ProjectModel> projectModelList=projectDTO.allEntitiesToModels(newProjectList);
         return ResponseEntity.ok().body(projectModelList);

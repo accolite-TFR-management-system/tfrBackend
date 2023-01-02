@@ -3,7 +3,7 @@ package com.accolite.tfr.service;
 import com.accolite.tfr.DTO.OrganisationDTO;
 import com.accolite.tfr.DTOmodel.OrganisationModel;
 import com.accolite.tfr.exception.Exception;
-import com.accolite.tfr.entity.Organisation;
+import com.accolite.tfr.model.Organisation;
 import com.accolite.tfr.repository.OrganisationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

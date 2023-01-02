@@ -2,7 +2,7 @@ package com.accolite.tfr.service;
 
 
 import com.accolite.tfr.DTOmodel.OrganisationModel;
-import com.accolite.tfr.entity.Organisation;
+import com.accolite.tfr.model.Organisation;
 
 
 public interface OrganisationService {

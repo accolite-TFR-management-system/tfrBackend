@@ -1,7 +1,7 @@
 package com.accolite.tfr.DTO;
 
 
-import com.accolite.tfr.entity.ProjectStatus;
+import com.accolite.tfr.model.ProjectStatus;
 import com.accolite.tfr.DTOmodel.ProjectStatusModel;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;

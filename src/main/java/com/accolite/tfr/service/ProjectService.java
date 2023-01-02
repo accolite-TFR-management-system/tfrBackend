@@ -1,7 +1,7 @@
 package com.accolite.tfr.service;
 
 import com.accolite.tfr.DTOmodel.ProjectModel;
-import com.accolite.tfr.entity.Project;
+import com.accolite.tfr.model.Project;
 
 import java.util.List;
 

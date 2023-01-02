@@ -2,16 +2,15 @@ package com.accolite.tfr.controller;
 
 
 import com.accolite.tfr.DTO.ProjectStatusDTO;
-import com.accolite.tfr.entity.ProjectStatus;
+import com.accolite.tfr.model.ProjectStatus;
 import com.accolite.tfr.DTOmodel.ProjectStatusModel;
 import com.accolite.tfr.repository.ProjectStatusRepository;
 import com.accolite.tfr.service.ProjectStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/tfr")
@@ -29,5 +28,12 @@ public class ProjectStatusController {
         ProjectStatus projectStatus = this.projectStatusService.addProjectStatus(projectStatusModel);
         ProjectStatusModel projectStatusModel1=projectStatusDTO.entityToModel(projectStatus);
         return ResponseEntity.ok().body(projectStatusModel1);
+    }
+
+    @GetMapping("/getProjectStatus/{p_id}")
+    private  ResponseEntity<List<ProjectStatusModel>> getProjectStatus(@PathVariable int p_id){
+        List<ProjectStatus> newProjectStatus = this.projectStatusService.getProjectStatus(p_id);
+        List<ProjectStatusModel> projectStatusModel=this.projectStatusDTO.allEntitiesToModels(newProjectStatus);
+        return  ResponseEntity.ok().body(projectStatusModel);
     }
 }

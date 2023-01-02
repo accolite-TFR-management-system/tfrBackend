@@ -1,6 +1,6 @@
 package com.accolite.tfr.DTO;
 
-import com.accolite.tfr.entity.AccoliteClientMN;
+import com.accolite.tfr.model.AccoliteClientMN;
 import com.accolite.tfr.DTOmodel.AccoliteClientMNModel;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;

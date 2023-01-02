@@ -3,7 +3,7 @@ package com.accolite.tfr.service;
 import com.accolite.tfr.DTO.ClientsDTO;
 import com.accolite.tfr.exception.Exception;
 import com.accolite.tfr.DTOmodel.ClientsModel;
-import com.accolite.tfr.entity.Clients;
+import com.accolite.tfr.model.Clients;
 import com.accolite.tfr.repository.ClientRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +37,16 @@ public class ClientServiceImp implements ClientsService{
         }
         else {
             throw new Exception("Project not found");
+        }
+    }
+
+    public Clients getClient(int c_id) {
+        Optional<Clients> client = this.clientRepository.findById(c_id);
+        if(client.isPresent()){
+            return client.get();
+        }
+        else {
+            throw new Exception("Client not found");
         }
     }
 

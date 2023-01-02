@@ -1,6 +1,6 @@
 package com.accolite.tfr.repository;
 
-import com.accolite.tfr.entity.Clients;
+import com.accolite.tfr.model.Clients;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

@@ -1,6 +1,6 @@
 package com.accolite.tfr.DTO;
 
-import com.accolite.tfr.entity.ResourceHistory;
+import com.accolite.tfr.model.ResourceHistory;
 import com.accolite.tfr.DTOmodel.ResourceHistoryModel;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;

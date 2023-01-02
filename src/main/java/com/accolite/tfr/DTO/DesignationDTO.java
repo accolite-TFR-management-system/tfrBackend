@@ -1,6 +1,6 @@
 package com.accolite.tfr.DTO;
 ;
-import com.accolite.tfr.entity.Designation;
+import com.accolite.tfr.model.Designation;
 import com.accolite.tfr.DTOmodel.DesignationModel;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;

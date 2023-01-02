@@ -2,7 +2,7 @@ package com.accolite.tfr.controller;
 
 
 import com.accolite.tfr.DTO.FeatureDTO;
-import com.accolite.tfr.entity.Feature;
+import com.accolite.tfr.model.Feature;
 import com.accolite.tfr.DTOmodel.FeatureModel;
 import com.accolite.tfr.repository.FeatureRepository;
 import com.accolite.tfr.service.FeatureServiceImp;

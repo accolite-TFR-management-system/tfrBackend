@@ -1,7 +1,7 @@
 package com.accolite.tfr.service;
 
 import com.accolite.tfr.DTOmodel.AccoliteClientMNModel;
-import com.accolite.tfr.entity.AccoliteClientMN;
+import com.accolite.tfr.model.AccoliteClientMN;
 import com.accolite.tfr.repository.AccoliteClientMNRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

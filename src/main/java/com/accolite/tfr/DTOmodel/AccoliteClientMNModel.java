@@ -1,7 +1,7 @@
 package com.accolite.tfr.DTOmodel;
 
-import com.accolite.tfr.entity.Clients;
-import com.accolite.tfr.entity.Resource;
+import com.accolite.tfr.model.Clients;
+import com.accolite.tfr.model.Resource;
 import lombok.Data;
 
 import java.util.Date;

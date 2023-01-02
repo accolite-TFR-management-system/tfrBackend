@@ -1,6 +1,6 @@
 package com.accolite.tfr.DTO;
 
-import com.accolite.tfr.entity.Risk;
+import com.accolite.tfr.model.Risk;
 import com.accolite.tfr.DTOmodel.RiskModel;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;

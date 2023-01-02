@@ -4,7 +4,7 @@ package com.accolite.tfr.service;
 import com.accolite.tfr.exception.Exception;
 import com.accolite.tfr.DTO.ProjectDTO;
 import com.accolite.tfr.DTOmodel.ProjectModel;
-import com.accolite.tfr.entity.Project;
+import com.accolite.tfr.model.Project;
 import com.accolite.tfr.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,8 +36,7 @@ public class ProjectServiceImp implements ProjectService{
         }
     }
 
-    public List<Project> getAllProjects() {
-        return this.projectRepository.findAll();
+    public List<Project> getAllProjects() { return this.projectRepository.findAll();
     }
 
 }

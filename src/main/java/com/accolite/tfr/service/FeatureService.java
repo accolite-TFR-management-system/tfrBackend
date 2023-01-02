@@ -2,7 +2,7 @@ package com.accolite.tfr.service;
 
 
 import com.accolite.tfr.DTOmodel.FeatureModel;
-import com.accolite.tfr.entity.Feature;
+import com.accolite.tfr.model.Feature;
 
 public interface FeatureService {
 

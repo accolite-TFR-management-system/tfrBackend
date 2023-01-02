@@ -1,6 +1,6 @@
 package com.accolite.tfr.DTOmodel;
 
-import com.accolite.tfr.entity.ResourceFeatureMN;
+import com.accolite.tfr.model.ResourceFeatureMN;
 import lombok.Data;
 
 import java.util.List;

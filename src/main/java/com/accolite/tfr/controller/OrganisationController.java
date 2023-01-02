@@ -2,7 +2,7 @@ package com.accolite.tfr.controller;
 
 
 import com.accolite.tfr.DTO.OrganisationDTO;
-import com.accolite.tfr.entity.Organisation;
+import com.accolite.tfr.model.Organisation;
 import com.accolite.tfr.DTOmodel.OrganisationModel;
 import com.accolite.tfr.repository.OrganisationRepository;
 import com.accolite.tfr.service.OrganisationService;

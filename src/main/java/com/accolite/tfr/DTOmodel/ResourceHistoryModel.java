@@ -1,8 +1,8 @@
 package com.accolite.tfr.DTOmodel;
 
-import com.accolite.tfr.entity.Designation;
-import com.accolite.tfr.entity.Project;
-import com.accolite.tfr.entity.Resource;
+import com.accolite.tfr.model.Designation;
+import com.accolite.tfr.model.Project;
+import com.accolite.tfr.model.Resource;
 import lombok.Data;
 
 import java.util.Date;

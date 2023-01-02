@@ -1,6 +1,6 @@
 package com.accolite.tfr.DTO;
 
-import com.accolite.tfr.entity.Milestone;
+import com.accolite.tfr.model.Milestone;
 import com.accolite.tfr.DTOmodel.MilestoneModel;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;

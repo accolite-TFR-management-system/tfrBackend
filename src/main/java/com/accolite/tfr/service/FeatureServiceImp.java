@@ -2,7 +2,7 @@ package com.accolite.tfr.service;
 
 import com.accolite.tfr.DTO.FeatureDTO;
 import com.accolite.tfr.DTOmodel.FeatureModel;
-import com.accolite.tfr.entity.Feature;
+import com.accolite.tfr.model.Feature;
 import com.accolite.tfr.repository.FeatureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

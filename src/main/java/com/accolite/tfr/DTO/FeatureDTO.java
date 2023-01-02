@@ -1,6 +1,6 @@
 package com.accolite.tfr.DTO;
 
-import com.accolite.tfr.entity.Feature;
+import com.accolite.tfr.model.Feature;
 import com.accolite.tfr.DTOmodel.FeatureModel;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;

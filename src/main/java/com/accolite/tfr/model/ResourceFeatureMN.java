@@ -1,4 +1,4 @@
-package com.accolite.tfr.entity;
+package com.accolite.tfr.model;
 
 import lombok.Data;
 

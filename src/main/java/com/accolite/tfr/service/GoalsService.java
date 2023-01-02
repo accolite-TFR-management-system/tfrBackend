@@ -1,11 +1,17 @@
 package com.accolite.tfr.service;
 
 import com.accolite.tfr.DTOmodel.GoalsModel;
-import com.accolite.tfr.entity.Goals;
+import com.accolite.tfr.model.Goals;
+
+import java.util.List;
 
 public interface GoalsService {
 
     public Goals addGoals(GoalsModel orgDto);
+
+    public Goals getGoal(int g_id);
+
+    public List<Goals> getGoals(int m_id);
 
 
 }

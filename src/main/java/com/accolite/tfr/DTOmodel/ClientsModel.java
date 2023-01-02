@@ -1,11 +1,13 @@
 package com.accolite.tfr.DTOmodel;
 
-import com.accolite.tfr.entity.Project;
-import com.accolite.tfr.entity.Resource;
+import com.accolite.tfr.model.Project;
+import com.accolite.tfr.model.Resource;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 public class ClientsModel {
@@ -25,4 +27,7 @@ public class ClientsModel {
     private Resource modifiedBy;
 
     private List<Project> clientList;
+
+    private Set<Resource> resourcec = new HashSet<>();
+
 }

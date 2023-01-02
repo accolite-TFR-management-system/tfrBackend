@@ -1,4 +1,4 @@
-package com.accolite.tfr.entity;
+package com.accolite.tfr.model;
 
 import lombok.Data;
 
@@ -7,6 +7,7 @@ import java.util.Date;
 
 @Entity
 @Data
+@Table(name="risk")
 public class Risk {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

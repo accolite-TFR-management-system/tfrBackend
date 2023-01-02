@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@Data
 @Table(name="feature")
 public class Feature {
     @Id

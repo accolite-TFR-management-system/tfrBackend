@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@Data
 @Table(name = "project")
 public class Project {
     @Id
@@ -113,7 +114,7 @@ public class Project {
     //@JsonManagedReference
     private Set<Resource> resource = new HashSet<>();
 
-
+    @JsonIgnore
     public Set<Resource> getResource() {
         return resource;
     }

@@ -1,6 +1,6 @@
 package com.accolite.tfr.DTO;
 
-import com.accolite.tfr.entity.Goals;
+import com.accolite.tfr.model.Goals;
 import com.accolite.tfr.DTOmodel.GoalsModel;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;

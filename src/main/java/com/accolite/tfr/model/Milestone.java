@@ -29,14 +29,15 @@ public class Milestone {
     private Date date_of_add;
     @Column(name = "weightage")
     private int weightage;
+
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="created_by",referencedColumnName = "id")
-
     private Resource resource;
+
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="project_id",referencedColumnName = "id")
-
     private Project project;
+
     @OneToMany(mappedBy = "Milestone")
     @JsonIgnore
     private List<Goals> GoalList;

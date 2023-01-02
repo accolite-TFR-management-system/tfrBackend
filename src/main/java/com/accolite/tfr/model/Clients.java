@@ -42,6 +42,7 @@ private Resource modifiedBy;
     @JsonIgnore
     private List<Project> clientList;
 
+    @JsonIgnore
     public Set<Resource> getResourcec() {
         return resourcec;
     }
