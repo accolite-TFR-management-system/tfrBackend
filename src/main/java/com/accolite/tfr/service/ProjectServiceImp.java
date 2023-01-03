@@ -39,7 +39,8 @@ public class ProjectServiceImp implements ProjectService{
         }
     }
 
-    public List<Project> getAllProjects() { return this.projectRepository.findAll();
+    public List<Project> getAllProjects() {
+        return this.projectRepository.findAll();
     }
 
     public ResponseEntity<List<ProjectModel>> getAllProjectSortedByDate() {

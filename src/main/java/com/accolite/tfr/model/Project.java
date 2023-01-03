@@ -1,13 +1,14 @@
 package com.accolite.tfr.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -25,9 +26,9 @@ public class Project {
     @Column(name="project_name")
     private String name;
     @Column(name="start_date")
-    private Date start_date;
+    private LocalDate start_date;
     @Column(name="end_date")
-    private Date end_date;
+    private LocalDate end_date;
     @Column(name="rag_status")
     private  String rag_status;
     @Column(name="sow")
@@ -65,8 +66,7 @@ public class Project {
     private int parent_id;
     @Column(name="current_pointer")
     private  int current_pointer;
-    @Column(name = "date_of_add",nullable = false, updatable = false)
-    @CreationTimestamp
+    @Column(name="date_of_add")
     private Date date_of_add;
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="created_by",referencedColumnName = "id")
@@ -86,9 +86,6 @@ public class Project {
     @JoinColumn(name="resource_lead_id",referencedColumnName = "id")
     private Resource projectLead;
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
-    @JoinColumn(name="modified_by",referencedColumnName = "id")
-    private Resource ModifiedBy;
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="client_id",referencedColumnName = "id")
     private Clients client;
     @OneToMany(mappedBy = "project")
@@ -105,7 +102,7 @@ public class Project {
 //    private List<Risk> RiskCreatedBy;
 //    @OneToMany(mappedBy = "ModifiedBy")
 //    @JsonIgnore
-//    private List<Resource> ModifiedBy;
+//    private List<Risk> ModifiedBy;
 
 
     @OneToMany(mappedBy = "project")
@@ -122,7 +119,7 @@ public class Project {
     //@JsonManagedReference
     private Set<Resource> resource = new HashSet<>();
 
-//    @JsonIgnore
+
     public Set<Resource> getResource() {
         return resource;
     }
