@@ -1,7 +1,5 @@
 package com.accolite.tfr.DTOmodel;
 
-import com.accolite.tfr.model.ResourceFeatureMN;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +13,5 @@ public class FeatureModel {
 
     private  String feature;
 
-    private List<ResourceFeatureMN> resourceFeatureMN;
 
 }

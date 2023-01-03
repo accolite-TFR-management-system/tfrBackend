@@ -1,7 +1,5 @@
 package com.accolite.tfr.repository;
 
-import com.accolite.tfr.model.Resource;
-import com.accolite.tfr.model.ResourceFeatureMN;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
