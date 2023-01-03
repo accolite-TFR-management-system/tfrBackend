@@ -18,8 +18,7 @@ import java.util.Set;
 public class TestController {
 
     @GetMapping("/testController")
-    public String testCtrl()
-    {
+    public String testCtrl() {
         return "Working Successfully";
     }
 
@@ -140,16 +139,16 @@ public class TestController {
 //        List<Goals> newGoals= this.service.getGoals(m_id);
 //        return  ResponseEntity.ok().body(newGoals);
 //    }
-    @GetMapping("/ResourceFeatureList/{r_id}")
-    private ResponseEntity<List<ResourceFeatureMN>> getResourceFeatureList(@PathVariable int r_id){
-        List<ResourceFeatureMN> newResourceFeatureMN= this.service.getResourceFeatureMN(r_id);
-        return  ResponseEntity.ok().body(newResourceFeatureMN);
-    }
-    @PostMapping("/ResourceProjectMN")
-    private  ResponseEntity<ResourceProjectMN> addResourceProjectMN(@RequestBody ResourceProjectMN resourceProjectMN){
-        ResourceProjectMN newResourceProjectMN = this.service.addResourceProjectMN(resourceProjectMN);
-        return  ResponseEntity.ok().body(newResourceProjectMN);
-    }
+//    @GetMapping("/ResourceFeatureList/{r_id}")
+//    private ResponseEntity<List<ResourceFeatureMN>> getResourceFeatureList(@PathVariable int r_id){
+//        List<ResourceFeatureMN> newResourceFeatureMN= this.service.getResourceFeatureMN(r_id);
+//        return  ResponseEntity.ok().body(newResourceFeatureMN);
+//    }
+//    @PostMapping("/ResourceProjectMN")
+//    private  ResponseEntity<ResourceProjectMN> addResourceProjectMN(@RequestBody ResourceProjectMN resourceProjectMN){
+//        ResourceProjectMN newResourceProjectMN = this.service.addResourceProjectMN(resourceProjectMN);
+//        return  ResponseEntity.ok().body(newResourceProjectMN);
+//    }
 //    @GetMapping("/getProjectStatus/{p_id}")
 //    private  ResponseEntity<List<ProjectStatus>> getProjectStatus(@PathVariable int p_id){
 //        List<ProjectStatus> newProjectStatus = this.service.getProjectStatus(p_id);

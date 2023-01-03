@@ -21,8 +21,8 @@ import java.util.Map;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/tfr")
 @CrossOrigin(origins="http://localhost:4200")
+@RequestMapping("/tfr")
 public class ResourceController {
 
     @Autowired
