@@ -22,6 +22,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/tfr")
+@CrossOrigin(origins="http://localhost:4200")
 public class ResourceController {
 
     @Autowired
@@ -76,6 +77,11 @@ public class ResourceController {
     @PatchMapping("/updateResource/{r_id}")
     private ResponseEntity<?> updateResource(@PathVariable("r_id") int resourceId,@RequestBody Map<Object,Object> fields){
         return resourceServiceImp.updateResource(resourceId,fields);
+    }
+
+    @PostMapping("/validate")
+    private ResponseEntity<Boolean> validateuser(@RequestBody ResourceModel user){
+        return ResponseEntity.ok().body(this.resourceServiceImp.validateuser(user));
     }
 
 }

@@ -164,4 +164,19 @@ public class ResourceServiceImp implements ResourceService{
         }
     }
 
+    public Boolean validateuser(ResourceModel l) {
+
+        Resource ll=this.resourceDTO.modelToEntity(l);
+        Resource lo=this.resourceRepository.findByEmail(ll.getEmail());
+        if(lo!=null) {
+            Resource newL=lo;
+//			System.out.println(newL.getEmail()+" , "+newL.getPassword());
+//			System.out.println(l.getEmail()+" , "+l.getPassword());
+//			System.out.println(l.getPassword()==newL.getPassword());
+            if(l.getPassword().equals(newL.getPassword())) return true;
+            else return false;
+        }
+        else return false;
+    }
+
 }
