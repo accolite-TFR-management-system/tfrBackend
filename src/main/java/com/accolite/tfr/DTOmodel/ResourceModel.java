@@ -33,10 +33,8 @@ public class ResourceModel {
     private List<Project> spocList;
     private List<Milestone> milestoneList;
     private List<Clients> createdBy;
-    private List<AccoliteClientMN> addedBy;
     private List<Risk> modifiedBy;
     private List<Risk> riskCreatedBy;
-    private List<AccoliteClientMN> Resources;
     private List<ResourceHistory> ResourceIdForHistory;
     private List<ResourceHistory> ResourceHistorycreatedBy;
     private List<Goals> CreatedByGoals;

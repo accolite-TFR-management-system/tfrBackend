@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tfr")
 @CrossOrigin(origins="http://localhost:4200")
+@RequestMapping("/tfr")
 public class ProjectController {
 
     @Autowired
@@ -43,6 +43,11 @@ public class ProjectController {
         List<Project> newProjectList = this.projectServiceImp.getAllProjects();
         List<ProjectModel> projectModelList=projectDTO.allEntitiesToModels(newProjectList);
         return ResponseEntity.ok().body(projectModelList);
+    }
+
+    @GetMapping("/getAllProjectSortedByDate")
+    private  ResponseEntity<List<ProjectModel>> getAllProjectSortedByDate() {
+        return projectServiceImp.getAllProjectSortedByDate();
     }
 
 }

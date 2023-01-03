@@ -68,20 +68,12 @@ public class Resource {
     @OneToMany(mappedBy = "createdBy")
     @JsonIgnore
     private List<Clients> createdBy;
-    @OneToMany(mappedBy = "addedBy")
-    @JsonIgnore
-    private List<AccoliteClientMN> addedBy;
     @OneToMany(mappedBy = "modifiedBy")
     @JsonIgnore
     private List<Risk> modifiedBy;
     @OneToMany(mappedBy = "riskCreatedBy")
     @JsonIgnore
     private List<Risk> riskCreatedBy;
-
-    @OneToMany(mappedBy = "resource")
-    @JsonIgnore
-    private List<AccoliteClientMN> Resources;
-
     @OneToMany(mappedBy = "ResourceIdForHistory")
     @JsonIgnore
     private List<ResourceHistory> ResourceIdForHistory;
