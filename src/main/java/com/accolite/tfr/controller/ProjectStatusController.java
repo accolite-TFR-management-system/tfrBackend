@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tfr")
 @CrossOrigin(origins="http://localhost:4200")
+@RequestMapping("/tfr")
 public class ProjectStatusController {
 
     @Autowired

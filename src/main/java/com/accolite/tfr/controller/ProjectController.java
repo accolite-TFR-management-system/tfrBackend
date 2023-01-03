@@ -45,4 +45,9 @@ public class ProjectController {
         return ResponseEntity.ok().body(projectModelList);
     }
 
+    @GetMapping("/getAllProjectSortedByDate")
+    private  ResponseEntity<List<ProjectModel>> getAllProjectSortedByDate() {
+        return projectServiceImp.getAllProjectSortedByDate();
+    }
+
 }
