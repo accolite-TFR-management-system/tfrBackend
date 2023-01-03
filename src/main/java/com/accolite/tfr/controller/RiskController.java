@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/tfr")
@@ -35,5 +36,10 @@ public class RiskController {
         List<Risk> newRisk = this.riskServiceImp.getRisk(p_id);
         List<RiskModel> riskModels=this.riskDTO.allEntitiesToModels(newRisk);
         return ResponseEntity.ok().body(riskModels);
+    }
+
+    @PatchMapping("/updateRisk/{r_id}")
+    private ResponseEntity<?> updateRisk(@PathVariable("r_id") int riskId,@RequestBody Map<Object,Object> fields){
+        return riskServiceImp.updateRisk(riskId,fields);
     }
 }

@@ -1,6 +1,7 @@
 package com.accolite.tfr.model;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -26,7 +27,8 @@ public class Goals {
     private String goal_description;
     @Column(name = "goal_status")
     private String goal_status;
-    @Column(name = "date_of_add")
+    @Column(name = "date_of_add",nullable = false, updatable = false)
+    @CreationTimestamp
     private Date date_of_add;
     @Column(name = "start_date")
     private Date start_date;

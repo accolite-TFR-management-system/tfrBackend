@@ -12,6 +12,7 @@ import com.accolite.tfr.model.Resource;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public interface ResourceService {
@@ -19,9 +20,10 @@ public interface ResourceService {
     public Resource addResource(ResourceModel resourceModel);
     //public List<Resource> findResourceByDesignationId(int desg_id);
     public List<Resource> getResources(int d_id);
-    public ResourceModel getResource(int r_id);
+    public Resource getResource(int r_id);
     public ResponseEntity<ClientsModel> addEmployeeToClient(int resourceId, int clientId);
     public ResponseEntity<FeatureModel> addEmployeeToFeature(int resourceId, int featureId);
     public ResponseEntity<ProjectModel> addEmployeeToProject(int employeeId, int projectId);
     public ResponseEntity<Set<ResourceModel>> getResourcesOnProject(int projectId);
+    public ResponseEntity<?> updateResource(int resourceId, Map<Object,Object> fields);
 }

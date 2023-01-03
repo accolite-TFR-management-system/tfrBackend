@@ -1,6 +1,7 @@
 package com.accolite.tfr.model;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -33,7 +34,8 @@ public class Risk {
     @JoinColumn(name="created_by",referencedColumnName = "id")
     private Resource riskCreatedBy;
 
-    @Column(name = "date_of_add")
+    @Column(name = "date_of_add",nullable = false, updatable = false)
+    @CreationTimestamp
     private Date date_of_add;
 //    @Column(name = "modified_by")
 //    private int modified_by;

@@ -19,7 +19,7 @@ public class DesignationController {
     @Autowired
     private DesignationRepository designationRepository;
     @Autowired
-    public DesignationServiceImp designationServiceImp;
+    public DesignationServiceImp    designationServiceImp;
     @Autowired(required = false)
     public DesignationDTO designationDTO;
 

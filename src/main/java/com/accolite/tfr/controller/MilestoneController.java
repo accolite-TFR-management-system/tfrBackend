@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/tfr")
@@ -35,6 +36,11 @@ public class MilestoneController {
         List<Milestone> newMilestone = this.milestoneServiceImp.getMilestone(p_id);
         List<MilestoneModel> milestoneModels=this.milestoneDTO.allEntitiesToModels(newMilestone);
         return  ResponseEntity.ok().body(milestoneModels);
+    }
+
+    @PatchMapping("/updateMilestone/{m_id}")
+    private ResponseEntity<?> updateMilestone(@PathVariable("m_id") int milestoneId,@RequestBody Map<Object,Object> fields){
+        return milestoneServiceImp.updateMilestone(milestoneId,fields);
     }
 
 

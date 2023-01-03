@@ -3,6 +3,7 @@ package com.accolite.tfr.DTOmodel;
 import com.accolite.tfr.model.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -32,7 +33,8 @@ public class ProjectModel {
     private Resource spoc;
     private Resource depHead;
     private Resource projectLead;
-    private Resource client;
+    private Resource ModifiedBy;
+    private Clients client;
     private List<Milestone> milestoneList;
     private List<ResourceHistory> ResourceHistoryProject;
     private List<Risk> ProjectRisk;

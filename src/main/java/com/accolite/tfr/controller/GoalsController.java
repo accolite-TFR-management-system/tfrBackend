@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/tfr")
@@ -42,6 +43,11 @@ public class GoalsController {
         List<Goals> newGoals= this.goalsServiceImp.getGoals(m_id);
         List<GoalsModel> goalsModel=this.goalsDTO.allEntitiesToModels(newGoals);
         return  ResponseEntity.ok().body(goalsModel);
+    }
+
+    @PatchMapping("/updateGoals/{g_id}")
+    private ResponseEntity<?> updateGoal(@PathVariable("g_id") int goalId,@RequestBody Map<Object,Object> fields){
+        return goalsServiceImp.updateGoals(goalId,fields);
     }
 
 }

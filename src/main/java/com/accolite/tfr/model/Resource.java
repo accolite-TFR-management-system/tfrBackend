@@ -64,7 +64,11 @@ public class Resource {
     private List<Milestone> milestoneList;
     @OneToMany(mappedBy = "createdBy")
     @JsonIgnore
-    private List<Resource> createdBy;
+    private List<Clients> createdBy;
+    @OneToMany(mappedBy = "ModifiedBy")
+    @JsonIgnore
+    private List<Project> ModifiedBy;
+
     @OneToMany(mappedBy = "addedBy")
     @JsonIgnore
     private List<AccoliteClientMN> addedBy;

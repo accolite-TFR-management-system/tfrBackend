@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @RestController
@@ -46,9 +47,9 @@ public class ResourceController {
 
     @GetMapping("/Resource/{r_id}")
     private ResponseEntity<ResourceModel> getResourcesById(@PathVariable int r_id){
-        ResourceModel newResource=this.resourceServiceImp.getResource(r_id);
-//        ResourceModel resourceModel=this.resourceDTO.entityToModel(newResource);
-        return ResponseEntity.ok().body(newResource);
+        Resource newResource=this.resourceServiceImp.getResource(r_id);
+        ResourceModel resourceModel=this.resourceDTO.entityToModel(newResource);
+        return ResponseEntity.ok().body(resourceModel);
     }
 
     @PostMapping("/add/resource/{resourceId}/project/{projectId}")
@@ -70,6 +71,11 @@ public class ResourceController {
     @GetMapping("/get/resource/{projectId}/project")
     private ResponseEntity<Set<ResourceModel>> getResourcesOnProject(@PathVariable("projectId") int ProjectId){
         return resourceServiceImp.getResourcesOnProject(ProjectId);
+    }
+
+    @PatchMapping("/updateResource/{r_id}")
+    private ResponseEntity<?> updateResource(@PathVariable("r_id") int resourceId,@RequestBody Map<Object,Object> fields){
+        return resourceServiceImp.updateResource(resourceId,fields);
     }
 
 }

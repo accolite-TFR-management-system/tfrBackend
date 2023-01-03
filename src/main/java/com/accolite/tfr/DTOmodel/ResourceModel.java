@@ -29,7 +29,8 @@ public class ResourceModel {
     private List<Project> createdByID;
     private List<Project> spocList;
     private List<Milestone> milestoneList;
-    private List<Resource> createdBy;
+    private List<Clients> createdBy;
+    private List<Project> ModifiedBy;
     private List<AccoliteClientMN> addedBy;
     private List<Risk> modifiedBy;
     private List<Risk> riskCreatedBy;
@@ -41,5 +42,4 @@ public class ResourceModel {
     Set<Feature> feature = new HashSet<>();
     Set<Project> project = new HashSet<>();
     Set<Clients> client = new HashSet<>();
-
 }

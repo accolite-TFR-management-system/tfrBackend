@@ -35,12 +35,12 @@ public class ClientsController {
         return  ResponseEntity.ok().body(clientsModel);
     }
 
-//    @GetMapping("/getClientByProjectID/{c_id}")
-//    private ResponseEntity<ClientsModel> getClientByProjectID(@PathVariable int c_id){
-//        Clients newClient = this.clientServiceImp.getProject(c_id);
-//        ClientsModel clientsModel=this.clientsDTO.entityToModel(newClient);
-//        return  ResponseEntity.ok().body(clientsModel);
-//    }
+    @GetMapping("/getClientByProjectID/{c_id}")
+    private ResponseEntity<ClientsModel> getClientByProjectID(@PathVariable int c_id){
+        Clients newClient = this.clientServiceImp.getProject(c_id);
+        ClientsModel clientsModel=this.clientsDTO.entityToModel(newClient);
+        return  ResponseEntity.ok().body(clientsModel);
+    }
 
 
 }

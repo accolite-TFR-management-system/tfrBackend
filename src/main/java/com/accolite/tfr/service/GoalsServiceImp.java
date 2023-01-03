@@ -8,10 +8,15 @@ import com.accolite.tfr.model.Milestone;
 import com.accolite.tfr.repository.GoalRepository;
 import com.accolite.tfr.repository.MilestoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
 
+import java.lang.reflect.Field;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -58,5 +63,21 @@ public class GoalsServiceImp implements GoalsService{
         }
     }
 
+    public ResponseEntity<?> updateGoals(int goalId, Map<Object, Object> fields) {
+        Optional<Goals> getGoal = this.goalRepository.findById(goalId);
+        if(getGoal.isPresent()){
+            fields.forEach((key,value)->{
+                Field field = ReflectionUtils.findField(Goals.class,(String) key);
+                field.setAccessible(true);
+                ReflectionUtils.setField(field,getGoal.get(),value);
+            });
+            Goals updatedGoal = this.goalRepository.save(getGoal.get());
+            GoalsModel goalsModel=this.goalsDTO.entityToModel(updatedGoal);
+            return new ResponseEntity<>(updatedGoal, HttpStatus.OK);
+        }
+        else {
+            throw new Exception("Goal not found");
+        }
+    }
 
 }

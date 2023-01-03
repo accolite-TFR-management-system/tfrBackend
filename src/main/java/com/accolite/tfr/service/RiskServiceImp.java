@@ -8,10 +8,15 @@ import com.accolite.tfr.model.Risk;
 import com.accolite.tfr.repository.ProjectRepository;
 import com.accolite.tfr.repository.RiskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
 
+import java.lang.reflect.Field;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -45,6 +50,23 @@ public class RiskServiceImp implements RiskService{
         }
         else {
             throw new Exception("project not found");
+        }
+    }
+
+    public ResponseEntity<?> updateRisk(int riskId, Map<Object, Object> fields) {
+        Optional<Risk> getRisk = this.riskRepository.findById(riskId);
+        if(getRisk.isPresent()){
+            fields.forEach((key,value)->{
+                Field field = ReflectionUtils.findField(Risk.class,(String) key);
+                field.setAccessible(true);
+                ReflectionUtils.setField(field,getRisk.get(),value);
+            });
+            Risk updatedRisk = this.riskRepository.save(getRisk.get());
+            RiskModel riskModel=this.riskDTO.entityToModel(updatedRisk);
+            return new ResponseEntity<>(updatedRisk, HttpStatus.OK);
+        }
+        else {
+            throw new Exception("Risk not found");
         }
     }
 }

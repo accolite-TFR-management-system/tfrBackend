@@ -15,9 +15,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
 
 import javax.transaction.Transactional;
+import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -120,12 +123,12 @@ public class ResourceServiceImp implements ResourceService{
     }
 
     @Override
-    public ResourceModel getResource(int r_id) {
-        Optional<Resource> newResource = this.resourceRepository.findById(r_id);
+    public Resource getResource(int r_id) {
+        Optional<Resource> newResource = Optional.ofNullable(this.resourceRepository.findResourceById(r_id));
         if(newResource.isPresent()){
-//            return newResource.get();
-            Resource r=newResource.get();
-            return resourceDTO.entityToModel(r);
+            return newResource.get();
+//            Resource r=newResource.get();
+//            return this.resourceDTO.entityToModel(r);
         }
         else{
             throw new Exception("Resource not found");
@@ -142,6 +145,23 @@ public class ResourceServiceImp implements ResourceService{
             return new ResponseEntity<Set<ResourceModel>>(resourceModel, HttpStatus.CREATED);
         }
         return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+
+    public ResponseEntity<?> updateResource(int resourceId, Map<Object,Object> fields) {
+        Optional<Resource> getResource = Optional.ofNullable(this.resourceRepository.findResourceById(resourceId));
+        if(getResource.isPresent()){
+            fields.forEach((key,value)->{
+                Field field = ReflectionUtils.findField(Resource.class,(String) key);
+                field.setAccessible(true);
+                ReflectionUtils.setField(field,getResource.get(),value);
+            });
+            Resource updateResource = resourceRepository.save(getResource.get());
+            ResourceModel resourceModel=this.resourceDTO.entityToModel(updateResource);
+            return new ResponseEntity<>(resourceModel,HttpStatus.OK);
+        }
+        else{
+            throw new Exception("resource not found");
+        }
     }
 
 }
