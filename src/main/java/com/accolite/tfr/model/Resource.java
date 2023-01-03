@@ -1,6 +1,6 @@
 package com.accolite.tfr.model;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@Data
 @Table(name = "Resources")
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property="id")
 
@@ -63,7 +64,11 @@ public class Resource {
     private List<Milestone> milestoneList;
     @OneToMany(mappedBy = "createdBy")
     @JsonIgnore
-    private List<Resource> createdBy;
+    private List<Clients> createdBy;
+    @OneToMany(mappedBy = "ModifiedBy")
+    @JsonIgnore
+    private List<Project> ModifiedBy;
+
     @OneToMany(mappedBy = "addedBy")
     @JsonIgnore
     private List<AccoliteClientMN> addedBy;
@@ -108,6 +113,7 @@ public class Resource {
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "resourcec")
     //@JsonBackReference
     Set<Clients> client = new HashSet<>();
+
 
     public int getId() {
         return id;

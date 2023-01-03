@@ -2,6 +2,7 @@ package com.accolite.tfr.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -23,18 +24,19 @@ public class Clients {
     private String emp_name;
     @Column(name = "emp_email")
     private String emp_email;
-    @Column(name = "date_of_add")
+    @Column(name = "date_of_add",nullable = false, updatable = false)
+    @CreationTimestamp
     private Date date_of_add;
 //    @Column(name = "created_by")
 //    private int created_by;
-@ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
-@JoinColumn(name="created_by",referencedColumnName = "id")
-private Resource createdBy;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+    @JoinColumn(name="created_by",referencedColumnName = "id")
+    private Resource createdBy;
 //    @Column(name = "modified_by")
 //    private int modified_by;
-@ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
-@JoinColumn(name="modified_by",referencedColumnName = "id")
-private Resource modifiedBy;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+    @JoinColumn(name="modified_by",referencedColumnName = "id")
+    private Resource modifiedBy;
 //    @Column(name = "date_of_modify")
 //    private Date date_of_modified;
 
@@ -42,6 +44,7 @@ private Resource modifiedBy;
     @JsonIgnore
     private List<Project> clientList;
 
+    @JsonIgnore
     public Set<Resource> getResourcec() {
         return resourcec;
     }

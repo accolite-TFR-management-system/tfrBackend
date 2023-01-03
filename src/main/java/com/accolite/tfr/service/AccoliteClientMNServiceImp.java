@@ -1,6 +1,6 @@
 package com.accolite.tfr.service;
 
-import com.accolite.tfr.dto.AccoliteClientMNDto;
+import com.accolite.tfr.DTOmodel.AccoliteClientMNModel;
 import com.accolite.tfr.model.AccoliteClientMN;
 import com.accolite.tfr.repository.AccoliteClientMNRepository;
 import org.modelmapper.ModelMapper;
@@ -14,17 +14,17 @@ public class AccoliteClientMNServiceImp implements AccoliteClientMNService{
     @Autowired
     public ModelMapper modelMapper;
 
-    public AccoliteClientMN addAccoliteCientMN(AccoliteClientMNDto accoliteClientMNDto) {
-        AccoliteClientMN accoliteClientMN = this.mapToEntity(accoliteClientMNDto);
+    public AccoliteClientMN addAccoliteClientMN(AccoliteClientMNModel accoliteClientMNModel) {
+        AccoliteClientMN accoliteClientMN = this.mapToEntity(accoliteClientMNModel);
         return this.accoliteClientMNRepository.save(accoliteClientMN);
     }
 
-    public AccoliteClientMNDto mapToDto(AccoliteClientMN org) {
-        AccoliteClientMNDto od = modelMapper.map(org,AccoliteClientMNDto.class);
+    public AccoliteClientMNModel mapToDto(AccoliteClientMN org) {
+        AccoliteClientMNModel od = modelMapper.map(org, AccoliteClientMNModel.class);
         return od;
     }
 
-    public AccoliteClientMN mapToEntity(AccoliteClientMNDto od) {
+    public AccoliteClientMN mapToEntity(AccoliteClientMNModel od) {
         AccoliteClientMN org = modelMapper.map(od, AccoliteClientMN.class);
         return org;
     }
