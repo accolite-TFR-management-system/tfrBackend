@@ -1,13 +1,16 @@
 package com.accolite.tfr.model;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name="resource_history")
 public class ResourceHistory {
     @Id

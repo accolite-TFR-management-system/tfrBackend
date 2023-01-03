@@ -1,12 +1,15 @@
 package com.accolite.tfr.DTO;
 
+import com.accolite.tfr.DTOmodel.ResourceModel;
 import com.accolite.tfr.model.Feature;
 import com.accolite.tfr.DTOmodel.FeatureModel;
+import com.accolite.tfr.model.Resource;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
@@ -30,5 +33,9 @@ public class FeatureDTO {
 
     public List<Feature> allModelsToEntities(List<FeatureModel> featureModelEntities) {
         return featureModelEntities.stream().map(this::modelToEntity).collect(Collectors.toList());
+    }
+
+    public Set<FeatureModel> allEntitiesToModelsSet(Set<Feature> features) {
+        return features.stream().map(this::entityToModel).collect(Collectors.toSet());
     }
 }

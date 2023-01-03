@@ -2,10 +2,13 @@ package com.accolite.tfr.DTOmodel;
 
 import com.accolite.tfr.model.Project;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 public class OrganisationModel {
     private int id;
 

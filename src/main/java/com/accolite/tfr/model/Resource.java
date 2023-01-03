@@ -2,6 +2,8 @@ package com.accolite.tfr.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,8 +12,9 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Data
-@Table(name = "Resources")
+@Getter
+@Setter
+@Table(name = "Resources",uniqueConstraints={@UniqueConstraint(name="Unique_email",columnNames={"email"})})
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property="id")
 
 public class Resource {
@@ -39,7 +42,7 @@ public class Resource {
     private String gender;
     @Column(name = "location")
     private  String location;
-//    @Column(name = "designation_id")
+    //    @Column(name = "designation_id")
 //    private int designation_id;
     @Column(name = "remark")
     private  String remark;
@@ -56,7 +59,7 @@ public class Resource {
     @JsonIgnore
     private List<Project> spocList;
 
-//    @ManyToMany(mappedBy = "resource")
+    //    @ManyToMany(mappedBy = "resource")
 //    @JsonIgnore
 //    private List<ResourceFeatureMN> resourceFeatureMN;
     @OneToMany(mappedBy = "resource")
@@ -65,10 +68,6 @@ public class Resource {
     @OneToMany(mappedBy = "createdBy")
     @JsonIgnore
     private List<Clients> createdBy;
-    @OneToMany(mappedBy = "ModifiedBy")
-    @JsonIgnore
-    private List<Project> ModifiedBy;
-
     @OneToMany(mappedBy = "addedBy")
     @JsonIgnore
     private List<AccoliteClientMN> addedBy;
@@ -91,9 +90,9 @@ public class Resource {
     @JsonIgnore
     private List<ResourceHistory> ResourceHistorycreatedBy;
 
-    @OneToMany(mappedBy = "CreatedBy")
+    @OneToMany(mappedBy = "CreatedByGoals")
     @JsonIgnore
-    private List<Goals> CreatedBy;
+    private List<Goals> CreatedByGoals;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="designation_id",referencedColumnName = "id")
@@ -113,13 +112,4 @@ public class Resource {
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "resourcec")
     //@JsonBackReference
     Set<Clients> client = new HashSet<>();
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 }

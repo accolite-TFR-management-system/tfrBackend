@@ -1,13 +1,16 @@
 package com.accolite.tfr.model;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "goals")
 public class Goals {
     @Id
@@ -38,7 +41,7 @@ public class Goals {
 //    private int created_by;
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="created_by",referencedColumnName = "id")
-    private Resource CreatedBy;
+    private Resource CreatedByGoals;
 
 
 //    public int getId() {

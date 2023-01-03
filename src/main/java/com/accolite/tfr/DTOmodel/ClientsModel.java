@@ -3,13 +3,16 @@ package com.accolite.tfr.DTOmodel;
 import com.accolite.tfr.model.Project;
 import com.accolite.tfr.model.Resource;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 public class ClientsModel {
 
     private int id;

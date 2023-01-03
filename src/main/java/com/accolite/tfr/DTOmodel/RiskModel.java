@@ -3,10 +3,13 @@ package com.accolite.tfr.DTOmodel;
 import com.accolite.tfr.model.Project;
 import com.accolite.tfr.model.Resource;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 
-@Data
+@Getter
+@Setter
 public class RiskModel {
 
     private int id;

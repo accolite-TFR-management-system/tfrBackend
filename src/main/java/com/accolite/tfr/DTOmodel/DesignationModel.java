@@ -3,9 +3,13 @@ package com.accolite.tfr.DTOmodel;
 import com.accolite.tfr.model.Resource;
 import com.accolite.tfr.model.ResourceHistory;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 public class DesignationModel {
 
     private int id;

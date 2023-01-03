@@ -3,6 +3,8 @@ package com.accolite.tfr.DTOmodel;
 import com.accolite.tfr.model.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -11,7 +13,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 public class ProjectModel {
 
     private int id;

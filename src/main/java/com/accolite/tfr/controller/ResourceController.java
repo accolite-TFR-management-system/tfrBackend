@@ -69,10 +69,10 @@ public class ResourceController {
         return resourceServiceImp.addEmployeeToClient(resourceId, clientId);
     }
 
-    @GetMapping("/get/resource/{projectId}/project")
-    private ResponseEntity<Set<ResourceModel>> getResourcesOnProject(@PathVariable("projectId") int ProjectId){
-        return resourceServiceImp.getResourcesOnProject(ProjectId);
-    }
+//    @GetMapping("/get/resource/{projectId}/project")
+//    private ResponseEntity<Set<ResourceModel>> getResourcesOnProject(@PathVariable("projectId") int ProjectId){
+//        return resourceServiceImp.getResourcesOnProject(ProjectId);
+//    }
 
     @PatchMapping("/updateResource/{r_id}")
     private ResponseEntity<?> updateResource(@PathVariable("r_id") int resourceId,@RequestBody Map<Object,Object> fields){
@@ -84,4 +84,16 @@ public class ResourceController {
         return ResponseEntity.ok().body(this.resourceServiceImp.validateuser(user));
     }
 
+    @GetMapping("/get/resource/{projectId}/project")
+    private ResponseEntity<Set<ResourceModel>> getResourcesOnProject(@PathVariable("projectId") int ProjectId){
+        return resourceServiceImp.getResourcesOnProject(ProjectId);
+    }
+    @GetMapping("/get/resource/{resourceId}/feature")
+    private ResponseEntity<Set<FeatureModel>> getfeaturesForResources(@PathVariable("resourceId") int resourceId){
+        return resourceServiceImp.getfeaturesForResources(resourceId);
+    }
+    @GetMapping("/get/resource/{resourceId}/client")
+    private ResponseEntity<Set<ClientsModel>> getClientsForResources(@PathVariable("resourceId") int resourceId){
+        return resourceServiceImp.getClientsForResources(resourceId);
+    }
 }

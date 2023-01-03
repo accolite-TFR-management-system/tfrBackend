@@ -19,10 +19,7 @@ import org.springframework.util.ReflectionUtils;
 
 import javax.transaction.Transactional;
 import java.lang.reflect.Field;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @Transactional
@@ -135,17 +132,17 @@ public class ResourceServiceImp implements ResourceService{
         }
     }
 
-    public ResponseEntity<Set<ResourceModel>> getResourcesOnProject(int projectId){
-        Optional<Project> projectOptional= Optional.ofNullable(this.projectRepository.findProjectById(projectId));
-//        Set<Resource> list = new HashSet<>();
-        if(projectOptional.isPresent()){
-            Project project=projectOptional.get();
-            Set<Resource> s = project.getResource();
-            Set<ResourceModel> resourceModel=this.resourceDTO.allEntitiesToModelsSet(s);
-            return new ResponseEntity<Set<ResourceModel>>(resourceModel, HttpStatus.CREATED);
-        }
-        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
-    }
+//    public ResponseEntity<Set<ResourceModel>> getResourcesOnProject(int projectId){
+//        Optional<Project> projectOptional= Optional.ofNullable(this.projectRepository.findProjectById(projectId));
+////        Set<Resource> list = new HashSet<>();
+//        if(projectOptional.isPresent()){
+//            Project project=projectOptional.get();
+//            Set<Resource> s = project.getResource();
+//            Set<ResourceModel> resourceModel=this.resourceDTO.allEntitiesToModelsSet(s);
+//            return new ResponseEntity<Set<ResourceModel>>(resourceModel, HttpStatus.CREATED);
+//        }
+//        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+//    }
 
     public ResponseEntity<?> updateResource(int resourceId, Map<Object,Object> fields) {
         Optional<Resource> getResource = Optional.ofNullable(this.resourceRepository.findResourceById(resourceId));
@@ -179,4 +176,37 @@ public class ResourceServiceImp implements ResourceService{
         else return false;
     }
 
+    public ResponseEntity<Set<ResourceModel>> getResourcesOnProject(int projectId){
+        Optional<Project> projectOptional= Optional.ofNullable(this.projectRepository.findProjectById(projectId));
+        Set<Resource> list = new HashSet<>();
+        if(projectOptional.isPresent()){
+            Project project=projectOptional.get();
+            Set<Resource> s = project.getResource();
+            Set<ResourceModel> sm=this.resourceDTO.allEntitiesToModelsSet(s);
+            return new ResponseEntity<Set<ResourceModel>>(sm, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+
+    public ResponseEntity<Set<FeatureModel>> getfeaturesForResources(int ResourceId) {
+        Optional<Resource> employeeOptional= Optional.ofNullable(this.resourceRepository.findResourceById(ResourceId));
+        if(employeeOptional.isPresent()){
+            Resource resource = employeeOptional.get();
+            Set<Feature> s = resource.getFeature();
+            Set<FeatureModel> sm = this.featureDTO.allEntitiesToModelsSet(s);
+            return  new  ResponseEntity<Set<FeatureModel>>(sm,HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+
+    public ResponseEntity<Set<ClientsModel>> getClientsForResources(int resourceId) {
+        Optional<Resource> employeeOptional = Optional.ofNullable(this.resourceRepository.findResourceById(resourceId));
+        if (employeeOptional.isPresent()) {
+            Resource resource = employeeOptional.get();
+            Set<Clients> s = resource.getClient();
+            Set<ClientsModel> sm = this.clientsDTO.allEntitiesToModelsSet(s);
+            return new ResponseEntity<Set<ClientsModel>>(sm, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
 }

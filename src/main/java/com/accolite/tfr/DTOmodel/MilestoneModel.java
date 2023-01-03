@@ -4,11 +4,14 @@ import com.accolite.tfr.model.Goals;
 import com.accolite.tfr.model.Project;
 import com.accolite.tfr.model.Resource;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 public class MilestoneModel {
 
     private int id;

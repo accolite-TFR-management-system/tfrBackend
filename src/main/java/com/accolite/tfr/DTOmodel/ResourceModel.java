@@ -3,6 +3,8 @@ package com.accolite.tfr.DTOmodel;
 import com.accolite.tfr.model.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,7 +12,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 public class ResourceModel {
 
     private int id;
@@ -30,14 +33,13 @@ public class ResourceModel {
     private List<Project> spocList;
     private List<Milestone> milestoneList;
     private List<Clients> createdBy;
-    private List<Project> ModifiedBy;
     private List<AccoliteClientMN> addedBy;
     private List<Risk> modifiedBy;
     private List<Risk> riskCreatedBy;
     private List<AccoliteClientMN> Resources;
     private List<ResourceHistory> ResourceIdForHistory;
     private List<ResourceHistory> ResourceHistorycreatedBy;
-    private List<Goals> CreatedBy;
+    private List<Goals> CreatedByGoals;
     private Designation ResourceList;
     Set<Feature> feature = new HashSet<>();
     Set<Project> project = new HashSet<>();

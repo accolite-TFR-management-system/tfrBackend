@@ -3,11 +3,14 @@ package com.accolite.tfr.DTOmodel;
 import com.accolite.tfr.model.Milestone;
 import com.accolite.tfr.model.Resource;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
 
-@Data
+@Getter
+@Setter
 public class GoalsModel {
 
     private int id;
