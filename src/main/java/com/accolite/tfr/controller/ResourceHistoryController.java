@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/tfr")
+@CrossOrigin(origins="http://localhost:4200")
 public class ResourceHistoryController {
 
     @Autowired
