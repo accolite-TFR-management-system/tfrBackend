@@ -37,7 +37,7 @@ public class Goals {
     private Date start_date;
     @Column(name = "end_date")
     private Date end_date;
-//    @Column(name = "created_by")
+    //    @Column(name = "created_by")
 //    private int created_by;
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="created_by",referencedColumnName = "id")

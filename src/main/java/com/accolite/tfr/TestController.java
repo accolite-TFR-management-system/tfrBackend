@@ -1,32 +1,32 @@
-package com.accolite.tfr;
-
+//package com.accolite.tfr;
+//
 //import com.accolite.tfr.dto.*;
-import com.accolite.tfr.model.*;
-import com.accolite.tfr.service.DesignationService;
-import com.accolite.tfr.service.Service;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
-@RestController
-@RequestMapping("/tfr")
-public class TestController {
-
-    @GetMapping("/testController")
-    public String testCtrl()
-    {
-        return "Working Successfully";
-    }
-
-    @Autowired
-    private DesignationService designationService;
-    @Autowired
-    private Service service;
+//import com.accolite.tfr.model.*;
+//import com.accolite.tfr.service.DesignationService;
+//import com.accolite.tfr.service.Service;
+//import org.springframework.beans.BeanUtils;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.http.ResponseEntity;
+//import org.springframework.web.bind.annotation.*;
+//
+//import java.util.ArrayList;
+//import java.util.List;
+//import java.util.Set;
+//
+//@RestController
+//@RequestMapping("/tfr")
+//public class TestController {
+//
+//    @GetMapping("/testController")
+//    public String testCtrl()
+//    {
+//        return "Working Successfully";
+//    }
+//
+//    @Autowired
+//    private DesignationService designationService;
+//    @Autowired
+//    private Service service;
 //    @PostMapping("/feature")
 //    private  ResponseEntity<FeatureDto> addFeature(@RequestBody Feature feature){
 //        Feature newFeature = this.service.addFeature(feature);
@@ -140,16 +140,16 @@ public class TestController {
 //        List<Goals> newGoals= this.service.getGoals(m_id);
 //        return  ResponseEntity.ok().body(newGoals);
 //    }
-    @GetMapping("/ResourceFeatureList/{r_id}")
-    private ResponseEntity<List<ResourceFeatureMN>> getResourceFeatureList(@PathVariable int r_id){
-        List<ResourceFeatureMN> newResourceFeatureMN= this.service.getResourceFeatureMN(r_id);
-        return  ResponseEntity.ok().body(newResourceFeatureMN);
-    }
-    @PostMapping("/ResourceProjectMN")
-    private  ResponseEntity<ResourceProjectMN> addResourceProjectMN(@RequestBody ResourceProjectMN resourceProjectMN){
-        ResourceProjectMN newResourceProjectMN = this.service.addResourceProjectMN(resourceProjectMN);
-        return  ResponseEntity.ok().body(newResourceProjectMN);
-    }
+//    @GetMapping("/ResourceFeatureList/{r_id}")
+//    private ResponseEntity<List<ResourceFeatureMN>> getResourceFeatureList(@PathVariable int r_id){
+//        List<ResourceFeatureMN> newResourceFeatureMN= this.service.getResourceFeatureMN(r_id);
+//        return  ResponseEntity.ok().body(newResourceFeatureMN);
+//    }
+//    @PostMapping("/ResourceProjectMN")
+//    private  ResponseEntity<ResourceProjectMN> addResourceProjectMN(@RequestBody ResourceProjectMN resourceProjectMN){
+//        ResourceProjectMN newResourceProjectMN = this.service.addResourceProjectMN(resourceProjectMN);
+//        return  ResponseEntity.ok().body(newResourceProjectMN);
+//    }
 //    @GetMapping("/getProjectStatus/{p_id}")
 //    private  ResponseEntity<List<ProjectStatus>> getProjectStatus(@PathVariable int p_id){
 //        List<ProjectStatus> newProjectStatus = this.service.getProjectStatus(p_id);
@@ -185,8 +185,8 @@ public class TestController {
 //    {
 //        return service.addEmployeeToClient(resourceId, clientId);
 //    }
-//    @GetMapping("/get/resource/{resourceId}/project")
-//    private ResponseEntity<Set<Resource>> getResourcesOnProject(@PathVariable("projectId") int ProjectId){
-//        return service.getResourcesOnProject(ProjectId);
-//    }
-}
+////    @GetMapping("/get/resource/{resourceId}/project")
+////    private ResponseEntity<Set<Resource>> getResourcesOnProject(@PathVariable("projectId") int ProjectId){
+////        return service.getResourcesOnProject(ProjectId);
+////    }
+//}

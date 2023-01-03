@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -19,8 +20,8 @@ public class ProjectModel {
 
     private int id;
     private String name;
-    private Date start_date;
-    private Date end_date;
+    private LocalDate start_date;
+    private LocalDate end_date;
     private  String rag_status;
     private int sow;
     private int total_resource;
@@ -36,7 +37,6 @@ public class ProjectModel {
     private Resource spoc;
     private Resource depHead;
     private Resource projectLead;
-    private Resource ModifiedBy;
     private Clients client;
     private List<Milestone> milestoneList;
     private List<ResourceHistory> ResourceHistoryProject;

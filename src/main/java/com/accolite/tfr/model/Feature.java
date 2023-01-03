@@ -36,7 +36,6 @@ public class Feature {
     //@JsonManagedReference
     private Set<Resource> resourcef = new HashSet<>();
 
-    @JsonIgnore
     public Set<Resource> getResourcef() {
         return resourcef;
     }
