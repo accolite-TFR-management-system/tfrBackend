@@ -1,12 +1,17 @@
 package com.accolite.tfr.model;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Data
+@Getter
+@Setter
+@Table(name="risk")
 public class Risk {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +37,8 @@ public class Risk {
     @JoinColumn(name="created_by",referencedColumnName = "id")
     private Resource riskCreatedBy;
 
-    @Column(name = "date_of_add")
+    @Column(name = "date_of_add",nullable = false, updatable = false)
+    @CreationTimestamp
     private Date date_of_add;
 //    @Column(name = "modified_by")
 //    private int modified_by;

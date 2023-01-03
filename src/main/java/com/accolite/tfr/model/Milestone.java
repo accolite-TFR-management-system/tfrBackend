@@ -2,13 +2,17 @@ package com.accolite.tfr.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "milestone")
 public class Milestone {
     @Id
@@ -25,18 +29,20 @@ public class Milestone {
     private String status;
 //    @Column(name = "created_by")
 //    private int created_by;
-    @Column(name = "date_of_add")
+    @Column(name = "date_of_add",nullable = false, updatable = false)
+    @CreationTimestamp
     private Date date_of_add;
     @Column(name = "weightage")
     private int weightage;
+
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="created_by",referencedColumnName = "id")
-
     private Resource resource;
+
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="project_id",referencedColumnName = "id")
-
     private Project project;
+
     @OneToMany(mappedBy = "Milestone")
     @JsonIgnore
     private List<Goals> GoalList;

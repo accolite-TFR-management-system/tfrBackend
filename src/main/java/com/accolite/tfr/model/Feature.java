@@ -2,6 +2,8 @@ package com.accolite.tfr.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -9,6 +11,8 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
 @Table(name="feature")
 public class Feature {
     @Id
@@ -32,6 +36,7 @@ public class Feature {
     //@JsonManagedReference
     private Set<Resource> resourcef = new HashSet<>();
 
+    @JsonIgnore
     public Set<Resource> getResourcef() {
         return resourcef;
     }
