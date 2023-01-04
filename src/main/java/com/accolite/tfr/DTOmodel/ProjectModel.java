@@ -2,6 +2,7 @@ package com.accolite.tfr.DTOmodel;
 
 import com.accolite.tfr.model.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
