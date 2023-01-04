@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "Resources")
+@Table(name = "Resources",uniqueConstraints={@UniqueConstraint(name="Unique_email",columnNames={"email"})})
+@Data
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property="id")
 
 public class Resource {
@@ -26,7 +27,7 @@ public class Resource {
     private String password;
     @Column(name = "name")
     private String  name;
-    @Column(name = "email")
+    @Column(name = "email",unique=true)
     private String  email;
     @Column(name = "join_date")
     private Date join_date;

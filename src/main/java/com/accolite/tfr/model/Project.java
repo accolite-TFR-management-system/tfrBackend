@@ -12,6 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "project")
+@Data
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,7 +67,6 @@ public class Project {
     @JoinColumn(name="created_by",referencedColumnName = "id")
     private Resource createdBy;
     @Column(name="invoicing_status")
-    @JsonIgnore
     private String invoicing_status;
 //
 

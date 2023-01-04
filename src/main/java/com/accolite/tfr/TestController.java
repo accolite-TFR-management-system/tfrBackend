@@ -15,6 +15,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/tfr")
+@CrossOrigin(origins="http://localhost:4200")
 public class TestController {
 
     @GetMapping("/testController")
@@ -73,11 +74,11 @@ public class TestController {
         AccoliteClientMN newAccoliteClientMN = this.service.addAccoliteClientMN(accoliteClientMN);
         return ResponseEntity.ok().body(newAccoliteClientMN);
     }
-//    @PostMapping("/addDesignation")
-//    private ResponseEntity<Designation> addAccoliteClientMN(@RequestBody Designation designation){
-//        Designation newDesignation = this.service.addDesignation(designation);
-//        return ResponseEntity.ok().body(newDesignation);
-//    }
+    @PostMapping("/addDesignation")
+    private ResponseEntity<Designation> addAccoliteClientMN(@RequestBody Designation designation){
+        Designation newDesignation = this.service.addDesignation(designation);
+        return ResponseEntity.ok().body(newDesignation);
+    }
     @PostMapping("/addResourceHistory")
     private ResponseEntity<ResourceHistory> addResourceHistory(@RequestBody ResourceHistory resourceHistory){
         ResourceHistory newResourceHistory = this.service.addResourceHistory(resourceHistory);
@@ -103,13 +104,13 @@ public class TestController {
 //        Resource newResource= this.service.getResource(r_id);
 //        return ResponseEntity.ok().body(newResource);
 //    }
-    @PostMapping("/addDesignation")
-    private ResponseEntity<DesignationDto> addAccoliteClientMN(@RequestBody DesignationDto dto){
-        //Designation designation = this.designationService.mapToEntity(dto);
-        Designation newDesignation = this.designationService.addDesignation(dto);
-        DesignationDto ddto = this.designationService.mapToDto(newDesignation);
-        return ResponseEntity.ok().body(ddto);
-    }
+//    @PostMapping("/addDesignation")
+//    private ResponseEntity<DesignationDto> addAccoliteClientMN(@RequestBody DesignationDto dto){
+//        //Designation designation = this.designationService.mapToEntity(dto);
+//        Designation newDesignation = this.designationService.addDesignation(dto);
+//        DesignationDto ddto = this.designationService.mapToDto(newDesignation);
+//        return ResponseEntity.ok().body(ddto);
+//    }
     @GetMapping("/getProject/{p_id}")
     private ResponseEntity<Project> getProject(@PathVariable int p_id){
         Project newProject = this.service.getProject(p_id);
@@ -185,6 +186,12 @@ public class TestController {
     {
         return service.addEmployeeToClient(resourceId, clientId);
     }
+    
+    @PostMapping("/validate")
+	 private ResponseEntity<Boolean> validateuser(@RequestBody Resource user){
+		 return ResponseEntity.ok().body(this.service.validateuser(user));
+	 }
+    
 //    @GetMapping("/get/resource/{resourceId}/project")
 //    private ResponseEntity<Set<Resource>> getResourcesOnProject(@PathVariable("projectId") int ProjectId){
 //        return service.getResourcesOnProject(ProjectId);
