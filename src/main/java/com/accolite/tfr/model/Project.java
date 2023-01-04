@@ -1,16 +1,22 @@
 package com.accolite.tfr.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "project")
 @Data
 public class Project {
@@ -21,9 +27,10 @@ public class Project {
     @Column(name="project_name")
     private String name;
     @Column(name="start_date")
-    private Date start_date;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate start_date;
     @Column(name="end_date")
-    private Date end_date;
+    private LocalDate end_date;
     @Column(name="rag_status")
     private  String rag_status;
     @Column(name="sow")
@@ -81,7 +88,7 @@ public class Project {
     private Resource projectLead;
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="client_id",referencedColumnName = "id")
-    private Resource client;
+    private Clients client;
     @OneToMany(mappedBy = "project")
     @JsonIgnore
     private List<Milestone> milestoneList;

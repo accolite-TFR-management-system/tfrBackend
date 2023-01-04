@@ -1,12 +1,14 @@
 package com.accolite.tfr.service;
 
 
-import com.accolite.tfr.dto.ProjectStatusDto;
+import com.accolite.tfr.DTOmodel.ProjectStatusModel;
 import com.accolite.tfr.model.ProjectStatus;
+
+import java.util.List;
 
 public interface ProjectStatusService {
 
-    public ProjectStatus addProjectStatus(ProjectStatusDto orgDto);
-    public ProjectStatusDto mapToDto(ProjectStatus org);
-    public ProjectStatus mapToEntity(ProjectStatusDto od);
+    public ProjectStatus addProjectStatus(ProjectStatusModel orgDto);
+
+    public List<ProjectStatus> getProjectStatus(int p_id);
 }

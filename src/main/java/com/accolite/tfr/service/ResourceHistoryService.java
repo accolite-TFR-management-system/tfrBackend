@@ -1,12 +1,17 @@
 package com.accolite.tfr.service;
 
 
-import com.accolite.tfr.dto.ResourceHistoryDto;
+import com.accolite.tfr.DTOmodel.ResourceHistoryModel;
 import com.accolite.tfr.model.ResourceHistory;
+
+import java.util.List;
 
 public interface ResourceHistoryService {
 
-    public ResourceHistory addResourceHistory(ResourceHistoryDto orgDto);
-    public ResourceHistoryDto mapToDto(ResourceHistory org);
-    public ResourceHistory mapToEntity(ResourceHistoryDto od);
+    public ResourceHistory addResourceHistory(ResourceHistoryModel orgDto);
+
+    public List<ResourceHistory> getResourceHistoryByResourceId(int r_id);
+
+    public List<ResourceHistory> getResourceHistoryByProjectId(int p_id);
+
 }

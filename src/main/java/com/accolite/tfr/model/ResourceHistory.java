@@ -1,12 +1,16 @@
 package com.accolite.tfr.model;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name="resource_history")
 public class ResourceHistory {
     @Id
@@ -30,8 +34,9 @@ public class ResourceHistory {
 //    private int designation_id;
 //    @Column(name = "project_id")
 //    private  int project_id;
-    @Column(name = "date_of_add")
-    private  Date date_of_add;
+    @Column(name = "date_of_add",nullable = false, updatable = false)
+    @CreationTimestamp
+    private Date date_of_add;
 //    private  int created_by;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})

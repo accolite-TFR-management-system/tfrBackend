@@ -1,9 +1,17 @@
 package com.accolite.tfr;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 public class TfrApplication {
@@ -12,6 +20,35 @@ public class TfrApplication {
 		return new ModelMapper();
 	}
 	public static void main(String[] args) {SpringApplication.run(TfrApplication.class, args);
+	}
+
+	@EnableWebMvc
+	@Configuration
+	public class WebConfig
+	{
+		@Bean
+		public WebMvcConfigurer corsConfigurer()
+		{
+			return new WebMvcConfigurer() {
+				@Override
+				public void addCorsMappings(CorsRegistry registry) {
+					registry.addMapping("/**").allowedOrigins("http://localhost:4200");
+				}
+			};
+		}
+
+		@Bean
+		public ObjectMapper jsonObjectMapper() {
+			final ObjectMapper jsonMapper = new ObjectMapper();
+			jsonMapper.registerModule(new JavaTimeModule());
+			jsonMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+
+			//some other configuration like:
+//			jsonMapper.registerModule(new Jdk8Module());
+//			jsonMapper.disable(SerializationFeature.WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS);
+
+			return jsonMapper;
+		}
 	}
 
 }

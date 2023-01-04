@@ -1,10 +1,10 @@
 package com.accolite.tfr.service;
 
-import com.accolite.tfr.dto.OrganisationDto;
+import com.accolite.tfr.DTO.OrganisationDTO;
+import com.accolite.tfr.DTOmodel.OrganisationModel;
 import com.accolite.tfr.exception.Exception;
 import com.accolite.tfr.model.Organisation;
 import com.accolite.tfr.repository.OrganisationRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,22 +14,12 @@ import java.util.Optional;
 public class OrganisationServiceImp implements OrganisationService{
     @Autowired
     private OrganisationRepository organisationRepository;
-    @Autowired
-    public ModelMapper modelMapper;
+    @Autowired(required = false)
+    public OrganisationDTO organisationDTO;
 
-    public Organisation addOrganisation(OrganisationDto od) {
-        Organisation organisation = this.mapToEntity(od);
+    public Organisation addOrganisation(OrganisationModel od) {
+        Organisation organisation = organisationDTO.modelToEntity(od);
         return this.organisationRepository.save(organisation);
-    }
-
-    public OrganisationDto mapToDto(Organisation org) {
-        OrganisationDto od = modelMapper.map(org,OrganisationDto.class);
-        return od;
-    }
-
-    public Organisation mapToEntity(OrganisationDto od) {
-        Organisation org = modelMapper.map(od, Organisation.class);
-        return org;
     }
 
     public Organisation getOrganisation(int org_id) {
