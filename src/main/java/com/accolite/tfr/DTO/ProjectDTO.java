@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,4 +32,7 @@ public class ProjectDTO {
     public List<Project> allModelsToEntities(List<ProjectModel>projectModelEntities) {
         return projectModelEntities.stream().map(this::modelToEntity).collect(Collectors.toList());
     }
+
+
+
 }
