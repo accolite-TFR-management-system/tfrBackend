@@ -2,14 +2,9 @@ package com.accolite.tfr.controller;
 
 
 import com.accolite.tfr.DTO.ResourceDTO;
-import com.accolite.tfr.DTOmodel.ClientsModel;
-import com.accolite.tfr.DTOmodel.FeatureModel;
-import com.accolite.tfr.DTOmodel.ProjectModel;
-import com.accolite.tfr.model.Clients;
-import com.accolite.tfr.model.Feature;
-import com.accolite.tfr.model.Project;
-import com.accolite.tfr.model.Resource;
-import com.accolite.tfr.DTOmodel.ResourceModel;
+import com.accolite.tfr.DTO.ResourceHistoryDTO;
+import com.accolite.tfr.DTOmodel.*;
+import com.accolite.tfr.model.*;
 import com.accolite.tfr.repository.ResourceRepository;
 import com.accolite.tfr.service.ResourceServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +26,9 @@ public class ResourceController {
     public ResourceServiceImp resourceServiceImp;
     @Autowired(required = false)
     public ResourceDTO resourceDTO;
+
+    @Autowired(required = false)
+    public ResourceHistoryDTO resourceHistoryDTO;
 
     @PostMapping("/addResource")
     private ResponseEntity<ResourceModel> addResource(@RequestBody ResourceModel resourceModel) {
@@ -95,5 +93,11 @@ public class ResourceController {
     @GetMapping("/get/resource/{resourceId}/client")
     private ResponseEntity<Set<ClientsModel>> getClientsForResources(@PathVariable("resourceId") int resourceId){
         return resourceServiceImp.getClientsForResources(resourceId);
+    }
+    @GetMapping("/deleteResource/{resource_id}/project/{project_id}")
+    private ResponseEntity<ResourceHistoryModel> deleteResourceFromProject(@PathVariable("resource_id") int resource_id, @PathVariable("project_id") int project_id ) {
+        ResourceHistory resourceHistory = this.resourceServiceImp.deleteEmployeeFromProject(resource_id, project_id);
+        ResourceHistoryModel resourceHistoryModel=this.resourceHistoryDTO.entityToModel(resourceHistory);
+        return ResponseEntity.ok().body(resourceHistoryModel);
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -48,6 +49,21 @@ public class ProjectServiceImp implements ProjectService{
         projectList.sort(Comparator.comparing(Project::getDate_of_add));
         List<ProjectModel> projectModels=this.projectDTO.allEntitiesToModels(projectList);
         return  new ResponseEntity<List<ProjectModel>>(projectModels, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<ProjectModel> updateProject(ProjectModel projectModel, int projectId) {
+        Project project= this.projectDTO.modelToEntity(projectModel);
+        Optional<Project> oldProject = Optional.ofNullable(this.projectRepository.findProjectById(projectId));
+        Project newProject = this.projectRepository.save(project);
+        if(oldProject.isPresent()){
+            Project oldProjectRecord = oldProject.get();
+            oldProjectRecord.setEnd_date(LocalDate.now());
+            newProject.setParent_id(oldProjectRecord.getId());
+            newProject.setCurrent_pointer(1);
+        }
+        ProjectModel projectModel1=this.projectDTO.entityToModel(newProject);
+        return new ResponseEntity<ProjectModel>(projectModel1, HttpStatus.OK);
     }
 
 }

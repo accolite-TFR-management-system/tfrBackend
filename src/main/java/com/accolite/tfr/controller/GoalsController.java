@@ -45,6 +45,12 @@ public class GoalsController {
         List<GoalsModel> goalsModel=this.goalsDTO.allEntitiesToModels(newGoals);
         return  ResponseEntity.ok().body(goalsModel);
     }
+    @GetMapping("/GoalsByPid/{p_id}")
+    private ResponseEntity<List<GoalsModel>> getGoalsByPid(@PathVariable int p_id){
+        List<Goals> newGoals= this.goalsServiceImp.getGoalsByPid(p_id);
+        List<GoalsModel> goalsModel=this.goalsDTO.allEntitiesToModels(newGoals);
+        return  ResponseEntity.ok().body(goalsModel);
+    }
 
     @PatchMapping("/updateGoals/{g_id}")
     private ResponseEntity<?> updateGoal(@PathVariable("g_id") int goalId,@RequestBody Map<Object,Object> fields){

@@ -6,10 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Getter
@@ -98,7 +95,7 @@ public class Resource {
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "resource")
     //@JsonBackReference
-    Set<Project> project = new HashSet<>();
+    Set<Project> project = new TreeSet<>();
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "resourcec")

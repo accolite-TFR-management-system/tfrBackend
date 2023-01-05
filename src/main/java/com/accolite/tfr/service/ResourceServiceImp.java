@@ -19,6 +19,9 @@ import org.springframework.util.ReflectionUtils;
 
 import javax.transaction.Transactional;
 import java.lang.reflect.Field;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 @Service
@@ -35,6 +38,8 @@ public class ResourceServiceImp implements ResourceService{
     private FeatureRepository featureRepository;
     @Autowired
     private ProjectRepository projectRepository;
+    @Autowired
+    private ResourceHistoryRepository resourceHistoryRepository;
     @Autowired(required=false)
     public ProjectDTO projectDTO;
     @Autowired(required = false)
@@ -178,7 +183,7 @@ public class ResourceServiceImp implements ResourceService{
 
     public ResponseEntity<Set<ResourceModel>> getResourcesOnProject(int projectId){
         Optional<Project> projectOptional= Optional.ofNullable(this.projectRepository.findProjectById(projectId));
-        Set<Resource> list = new HashSet<>();
+
         if(projectOptional.isPresent()){
             Project project=projectOptional.get();
             Set<Resource> s = project.getResource();
@@ -187,6 +192,7 @@ public class ResourceServiceImp implements ResourceService{
         }
         return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
+
 
     public ResponseEntity<Set<FeatureModel>> getfeaturesForResources(int ResourceId) {
         Optional<Resource> employeeOptional= Optional.ofNullable(this.resourceRepository.findResourceById(ResourceId));
@@ -208,5 +214,33 @@ public class ResourceServiceImp implements ResourceService{
             return new ResponseEntity<Set<ClientsModel>>(sm, HttpStatus.OK);
         }
         return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+
+    public ResourceHistory deleteEmployeeFromProject(int resourceId,int projectId) {
+        Optional<Project> project=Optional.ofNullable(this.projectRepository.findProjectById(projectId));
+        Optional<Resource> resource=Optional.ofNullable(this.resourceRepository.findResourceById(resourceId));
+        if(project.isPresent() && resource.isPresent()) {
+            Resource employee = resource.get();
+            Project proj = project.get();
+            LocalDate ld=LocalDate.now();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            Date date = new Date();
+            Timestamp ts=new Timestamp(date.getTime());
+            proj.getResource().remove(employee);
+            ResourceHistory resourceHistory=new ResourceHistory();
+            resourceHistory.setStart_date(employee.getJoin_date());
+//            resourceHistory.setEnd_date();
+//            resourceHistory.setDate_of_add();
+            resourceHistory.setResourceHistoryProject(proj);
+            resourceHistory.setResourceHistoryList(employee.getResourceList());
+            resourceHistory.setRemark(employee.getRemark());
+            resourceHistory.setResourceIdForHistory(employee);
+            resourceHistoryRepository.save(resourceHistory);
+            projectRepository.save(proj);
+//            return ResponseEntity.ok().body(resourceHistory);
+            return resourceHistory;
+        } else {
+            throw new Exception("Deletion not possible");
+        }
     }
 }

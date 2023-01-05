@@ -49,5 +49,10 @@ public class ProjectController {
     private  ResponseEntity<List<ProjectModel>> getAllProjectSortedByDate() {
         return projectServiceImp.getAllProjectSortedByDate();
     }
+    @PostMapping("/updateProject/{parent_id}")
+    private  ResponseEntity<ProjectModel> updateProject (@RequestBody ProjectModel projectModel ,@PathVariable("parent_id") int parentId){
+        ResponseEntity<ProjectModel> project = this.projectServiceImp.updateProject(projectModel,parentId);
+        return project;
+    }
 
 }
