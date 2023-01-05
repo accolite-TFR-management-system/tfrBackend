@@ -70,6 +70,9 @@ public class Project {
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="created_by",referencedColumnName = "id")
     private Resource createdBy;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+    @JoinColumn(name="modified_by",referencedColumnName = "id")
+    private Resource modifiedBy;
     @Column(name="invoicing_status")
     @JsonIgnore
     private String invoicing_status;

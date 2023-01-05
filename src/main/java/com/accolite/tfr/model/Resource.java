@@ -52,6 +52,9 @@ public class Resource {
     @OneToMany(mappedBy = "createdBy")
     @JsonIgnore
     private List<Project> createdByID;
+    @OneToMany(mappedBy = "modifiedBy")
+    @JsonIgnore
+    private List<Project> modifiedByID;
     @OneToMany(mappedBy = "spoc")
     @JsonIgnore
     private List<Project> spocList;
