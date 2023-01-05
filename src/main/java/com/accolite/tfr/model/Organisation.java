@@ -40,11 +40,4 @@ public class Organisation {
 //    @JsonBackReference(value="department")
     private List<Project> divisionList;
 
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
 }

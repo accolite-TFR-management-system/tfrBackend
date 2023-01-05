@@ -12,4 +12,6 @@ public interface ProjectService {
     public List<Project> getAllProjects();
 
     public ResponseEntity<List<ProjectModel>> getAllProjectSortedByDate();
+
+    public ResponseEntity<ProjectModel> updateProject(ProjectModel projectModel,int projectId);
 }

@@ -18,7 +18,7 @@ public class TfrApplication {
 	public static void main(String[] args) {SpringApplication.run(TfrApplication.class, args);
 	}
 
-	@EnableWebMvc
+//	@EnableWebMvc
 	@Configuration
 	public class WebConfig
 	{
