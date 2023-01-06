@@ -76,7 +76,6 @@ public class Project {
     @Column(name="invoicing_status")
     @JsonIgnore
     private String invoicing_status;
-//
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="spoc_id",referencedColumnName = "id")
