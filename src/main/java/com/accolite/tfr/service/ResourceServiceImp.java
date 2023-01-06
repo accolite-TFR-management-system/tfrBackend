@@ -222,15 +222,15 @@ public class ResourceServiceImp implements ResourceService{
         if(project.isPresent() && resource.isPresent()) {
             Resource employee = resource.get();
             Project proj = project.get();
-            LocalDate ld=LocalDate.now();
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+//            LocalDate ld=LocalDate.now();
+//            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             Date date = new Date();
             Timestamp ts=new Timestamp(date.getTime());
             proj.getResource().remove(employee);
             ResourceHistory resourceHistory=new ResourceHistory();
             resourceHistory.setStart_date(employee.getJoin_date());
-//            resourceHistory.setEnd_date();
-//            resourceHistory.setDate_of_add();
+            resourceHistory.setEnd_date(ts);
+            resourceHistory.setDate_of_add(ts);
             resourceHistory.setResourceHistoryProject(proj);
             resourceHistory.setResourceHistoryList(employee.getResourceList());
             resourceHistory.setRemark(employee.getRemark());
