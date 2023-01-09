@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -32,6 +33,7 @@ public class ResourceController {
 
     @PostMapping("/addResource")
     private ResponseEntity<ResourceModel> addResource(@RequestBody ResourceModel resourceModel) {
+    	System.out.println(resourceModel);
         Resource resource = this.resourceServiceImp.addResource(resourceModel);
         ResourceModel resourceModel1 = this.resourceDTO.entityToModel(resource);
         return ResponseEntity.ok().body(resourceModel1);
@@ -78,7 +80,7 @@ public class ResourceController {
     }
 
     @PostMapping("/validate")
-    private ResponseEntity<Boolean> validateuser(@RequestBody ResourceModel user){
+    private ResponseEntity<List<Object>> validateuser(@RequestBody ResourceModel user){
         return ResponseEntity.ok().body(this.resourceServiceImp.validateuser(user));
     }
 
@@ -94,12 +96,14 @@ public class ResourceController {
     private ResponseEntity<Set<ClientsModel>> getClientsForResources(@PathVariable("resourceId") int resourceId){
         return resourceServiceImp.getClientsForResources(resourceId);
     }
+
     @GetMapping("/deleteResource/{resource_id}/project/{project_id}")
     private ResponseEntity<ResourceHistoryModel> deleteResourceFromProject(@PathVariable("resource_id") int resource_id, @PathVariable("project_id") int project_id ) {
         ResourceHistory resourceHistory = this.resourceServiceImp.deleteEmployeeFromProject(resource_id, project_id);
         ResourceHistoryModel resourceHistoryModel=this.resourceHistoryDTO.entityToModel(resourceHistory);
         return ResponseEntity.ok().body(resourceHistoryModel);
     }
+
 
     @GetMapping("/showAddResource/{id}")
     private Boolean showAddResource(@PathVariable("id") int id){
@@ -111,9 +115,16 @@ public class ResourceController {
             return null;
         }
     }
+
+    
+    @GetMapping("/getallresource")
+    private ResponseEntity<HashMap<String,Integer>> getallresource(){
+        return ResponseEntity.ok().body(this.resourceServiceImp.getallresources());
+
     @GetMapping("/FeatureListByResourceId/{r_id}")
     private List<Boolean> getFeatureListByResourceId(@PathVariable("r_id") int r_id){
         List<Boolean> list = this.resourceServiceImp.getFeatureListByResourceId(r_id);
         return list;
+
     }
 }

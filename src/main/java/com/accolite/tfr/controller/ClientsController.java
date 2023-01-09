@@ -3,9 +3,14 @@ package com.accolite.tfr.controller;
 
 import com.accolite.tfr.DTO.ClientsDTO;
 import com.accolite.tfr.model.Clients;
+import com.accolite.tfr.model.Designation;
 import com.accolite.tfr.DTOmodel.ClientsModel;
+import com.accolite.tfr.DTOmodel.DesignationModel;
 import com.accolite.tfr.repository.ClientRepository;
 import com.accolite.tfr.service.ClientServiceImp;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,5 +48,11 @@ public class ClientsController {
         return  ResponseEntity.ok().body(clientsModel);
     }
 
+    @GetMapping("/getclient")
+    private ResponseEntity<List<ClientsModel>> getallclient(){
+        List<Clients> clients = this.clientServiceImp.getallclients();
+        List<ClientsModel> clientsmodel=clientsDTO.allEntitiesToModels(clients);
+        return ResponseEntity.ok().body(clientsmodel);
+    }
 
 }

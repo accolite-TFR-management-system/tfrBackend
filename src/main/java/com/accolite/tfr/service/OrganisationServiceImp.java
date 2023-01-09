@@ -34,6 +34,22 @@ public class OrganisationServiceImp implements OrganisationService{
         }
     }
 
+    
+    public List<Organisation> getdivision(String div){
+    	return this.organisationRepository.FindbyDepartment_type(div);
+    }
+    
+    public List<Organisation> getsupdept(String div){
+    	return this.organisationRepository.Findbysuperdept(div);
+    }
+    
+    public List<Organisation> getdept(String div){
+    	return this.organisationRepository.Findbydept(div);
+    }
+    
+    
+
+
     @Override
     public List<Organisation> getAllDiv() {
         List<Organisation> list = this.organisationRepository.findAllDivsions();
@@ -56,4 +72,5 @@ public class OrganisationServiceImp implements OrganisationService{
             return null;
         }
     }
+
 }

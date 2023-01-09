@@ -236,19 +236,26 @@ public class ResourceServiceImp implements ResourceService{
         }
     }
 
-    public Boolean validateuser(ResourceModel l) {
+    public List<Object> validateuser(ResourceModel l) {
 
         Resource ll=this.resourceDTO.modelToEntity(l);
         Resource lo=this.resourceRepository.findByEmail(ll.getEmail());
+        List<Object> list=new ArrayList<>();
+        list.add(false);
+        list.add(1234);
         if(lo!=null) {
             Resource newL=lo;
 //			System.out.println(newL.getEmail()+" , "+newL.getPassword());
 //			System.out.println(l.getEmail()+" , "+l.getPassword());
 //			System.out.println(l.getPassword()==newL.getPassword());
-            if(l.getPassword().equals(newL.getPassword())) return true;
-            else return false;
+            if(l.getPassword().equals(newL.getPassword())) {
+            	list.set(1, newL.getId());
+            	list.set(0, true);
+            	return list;
+            }
+            else return list;
         }
-        else return false;
+        else return list ;
     }
 
     public ResponseEntity<Set<ResourceModel>> getResourcesOnProject(int projectId){
@@ -286,6 +293,7 @@ public class ResourceServiceImp implements ResourceService{
         return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
 
+
     public ResourceHistory deleteEmployeeFromProject(int resourceId,int projectId) {
         Optional<Project> project=Optional.ofNullable(this.projectRepository.findProjectById(projectId));
         Optional<Resource> resource=Optional.ofNullable(this.resourceRepository.findResourceById(resourceId));
@@ -314,17 +322,35 @@ public class ResourceServiceImp implements ResourceService{
         }
     }
 
+
     public Boolean showAddResource(int id) {
         Optional<Resource> employeeOptional= Optional.ofNullable(this.resourceRepository.findResourceById(id));
         if(employeeOptional.isPresent()){
             Resource resource = employeeOptional.get();
+
+            Feature feature = featureRepository.findFeatureById(23);
+
             Feature feature = featureRepository.findFeatureById(5);
+
             Set<Feature> s = resource.getFeature();
             if(s.contains(feature)){
                 return true;
             }
         }
-        return false;
+
+            return false;
+    }
+    
+    public HashMap<String,Integer> getallresources(){
+    	List<Resource> l=this.resourceRepository.findAll();
+    	HashMap<String,Integer> map=new HashMap<>();
+    	if(l!=null) {
+    		for(int i=0;i<l.size();i++) {
+    			map.put( l.get(i).getEmail(),l.get(i).getId());
+    		}
+    		return map;
+    	}
+    	return map;
     }
 
     public List<Boolean> getFeatureListByResourceId(int r_id) {
@@ -350,5 +376,6 @@ public class ResourceServiceImp implements ResourceService{
             return list;
         }
         return list;
+
     }
 }

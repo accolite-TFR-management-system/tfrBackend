@@ -16,6 +16,7 @@ import java.util.*;
 @Getter
 @Setter
 @Table(name = "project")
+@Data
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -74,7 +75,6 @@ public class Project {
     @JoinColumn(name="modified_by",referencedColumnName = "id")
     private Resource modifiedBy;
     @Column(name="invoicing_status")
-    @JsonIgnore
     private String invoicing_status;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})

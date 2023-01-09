@@ -23,6 +23,12 @@ public class ClientsModel {
     private String emp_name;
 
     private String emp_email;
+    
+    private int emp_id;
+
+    private String client_location;
+
+    private String emp_designation;
 
     private int emp_id;
 
