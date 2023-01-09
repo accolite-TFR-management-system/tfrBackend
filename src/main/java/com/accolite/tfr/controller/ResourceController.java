@@ -100,4 +100,20 @@ public class ResourceController {
         ResourceHistoryModel resourceHistoryModel=this.resourceHistoryDTO.entityToModel(resourceHistory);
         return ResponseEntity.ok().body(resourceHistoryModel);
     }
+
+    @GetMapping("/showAddResource/{id}")
+    private Boolean showAddResource(@PathVariable("id") int id){
+        Boolean result = this.resourceServiceImp.showAddResource(id);
+        if(result!=null){
+            return result;
+        }
+        else{
+            return null;
+        }
+    }
+    @GetMapping("/FeatureListByResourceId/{r_id}")
+    private List<Boolean> getFeatureListByResourceId(@PathVariable("r_id") int r_id){
+        List<Boolean> list = this.resourceServiceImp.getFeatureListByResourceId(r_id);
+        return list;
+    }
 }

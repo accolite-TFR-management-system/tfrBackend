@@ -21,8 +21,8 @@ public class ProjectModel {
 
     private int id;
     private String name;
-    private LocalDate start_date;
-    private LocalDate end_date;
+    private Date start_date;
+    private Date end_date;
     private  String rag_status;
     private int sow;
     private int total_resource;
@@ -42,6 +42,7 @@ public class ProjectModel {
     private List<Milestone> milestoneList;
     private List<ResourceHistory> ResourceHistoryProject;
     private List<Risk> ProjectRisk;
+    private List<InvoiceHistory> ProjectInvoiceHistory;
     private List<ProjectStatus> listOfStatus;
     private Set<Resource> resource = new HashSet<>();
 
