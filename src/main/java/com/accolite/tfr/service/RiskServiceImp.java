@@ -19,6 +19,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static java.util.Comparator.nullsLast;
+
 @Service
 public class RiskServiceImp implements RiskService{
 
@@ -42,7 +44,7 @@ public class RiskServiceImp implements RiskService{
             Optional<List<Risk>> newList = Optional.ofNullable(this.riskRepository.findRiskByProjectId(p_id));
             if (newList.isPresent()) {
                 List<Risk> list = newList.get();
-                list.sort(Comparator.comparing(Risk::getDate_of_add));
+                list.sort(nullsLast(Comparator.comparing(Risk::getRisk_mitigation)));
                 return newList.get();
             } else {
                 throw new Exception("Risk  not found");

@@ -44,6 +44,4 @@ public class ResourceHistoryController {
         List<ResourceHistoryModel> resourceHistoryModels=this.resourceHistoryDTO.allEntitiesToModels(newList);
         return ResponseEntity.ok().body(resourceHistoryModels);
     }
-
-
 }

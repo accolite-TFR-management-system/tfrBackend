@@ -77,7 +77,6 @@ public class GoalsServiceImp implements GoalsService {
             throw new Exception("Goal not found");
         }
     }
-
     public List<Goals> getGoalsByPid(int p_id) {
         Optional<Project> newProject = this.projectRepository.findById(p_id);
         List<Goals> goals = new ArrayList<Goals>();

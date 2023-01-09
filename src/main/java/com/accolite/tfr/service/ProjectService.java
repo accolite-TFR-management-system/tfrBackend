@@ -11,9 +11,8 @@ public interface ProjectService {
     public Project addProject(ProjectModel projectModel);
     public Project getProject(int p_id);
     public List<Project> getAllProjects();
-
     public ResponseEntity<List<ProjectModel>> getAllProjectSortedByDate();
-
+//    public List<Project> getProjectByCid(int c_id);
     public ResponseEntity<ProjectModel> updateProject(ProjectModel projectModel,int projectId);
 
     public ResponseEntity<List<Project>> getProjectByOrgId(int o_id);

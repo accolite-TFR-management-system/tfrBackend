@@ -36,12 +36,12 @@ public class Clients {
     @Column(name = "date_of_add",nullable = false, updatable = false)
     @CreationTimestamp
     private Date date_of_add;
-    @Column(name = "emp_id")
-    private int emp_id;
-    @Column(name = "client_location")
-    private String client_location;
-    @Column(name = "emp_designation")
-    private String emp_designation;
+//    @Column(name = "emp_id")
+//    private int emp_id;
+//    @Column(name = "client_location")
+//    private String client_location;
+//    @Column(name = "emp_designation")
+//    private String emp_designation;
 //    @Column(name = "created_by")
 //    private int created_by;
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
@@ -58,6 +58,13 @@ public class Clients {
     @OneToMany(mappedBy = "client")
     @JsonIgnore
     private List<Project> clientList;
+
+//    @Column(name = "emp_id")
+//    private int emp_id;
+//    @Column(name = "client_location")
+//    private String client_location;
+//    @Column(name = "emp_designation")
+//    private String emp_designation;
 
     @JsonIgnore
     public Set<Resource> getResourcec() {

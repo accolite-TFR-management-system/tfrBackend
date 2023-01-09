@@ -39,7 +39,7 @@ public class ProjectController {
         return ResponseEntity.ok().body(projectModel);
     }
     @GetMapping("/getProjectByCid/{c_id}")
-    private ResponseEntity<List<ProjectModel>> getProjectByCid(@PathVariable int c_id){
+    private ResponseEntity<List<ProjectModel>> getProjectByCid(@PathVariable("c_id") int c_id){
         List<Project> newProject = this.projectServiceImp.getProjectByCid(c_id);
         List<ProjectModel> projectModel=projectDTO.allEntitiesToModels(newProject);
         return ResponseEntity.ok().body(projectModel);
@@ -61,6 +61,12 @@ public class ProjectController {
         ResponseEntity<ProjectModel> project = this.projectServiceImp.updateProject(projectModel,parentId);
         return project;
     }
+//    @GetMapping("/getProjectByCid/{c_id}")
+//    private ResponseEntity<List<ProjectModel>> getProjectByCid(@PathVariable int c_id){
+//        List<Project> newProject = this.projectServiceImp.getProjectByCid(c_id);
+//        List<ProjectModel> projectModel=projectDTO.allEntitiesToModels(newProject);
+//        return ResponseEntity.ok().body(projectModel);
+//    }
 
     @GetMapping("/getProjectByOrgId/{o_id}")
     private ResponseEntity<List<Project>> getProjectByOrgId(@PathVariable("o_id") int o_id){

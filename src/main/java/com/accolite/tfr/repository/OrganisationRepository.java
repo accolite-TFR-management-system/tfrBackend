@@ -2,13 +2,6 @@ package com.accolite.tfr.repository;
 
 import com.accolite.tfr.DTOmodel.OrganisationModel;
 import com.accolite.tfr.model.Organisation;
-
-
-
-
-
-	
-
 import com.accolite.tfr.model.Resource;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

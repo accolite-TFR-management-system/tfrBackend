@@ -1,12 +1,14 @@
 package com.accolite.tfr.service;
 
 
+import com.accolite.tfr.DTOmodel.ResourceModel;
 import com.accolite.tfr.exception.Exception;
 import com.accolite.tfr.DTO.ProjectDTO;
 import com.accolite.tfr.DTOmodel.ProjectModel;
 import com.accolite.tfr.model.Clients;
 import com.accolite.tfr.model.Organisation;
 import com.accolite.tfr.model.Project;
+import com.accolite.tfr.model.Resource;
 import com.accolite.tfr.repository.ClientRepository;
 import com.accolite.tfr.repository.OrganisationRepository;
 import com.accolite.tfr.repository.ProjectRepository;
@@ -93,7 +95,21 @@ public class ProjectServiceImp implements ProjectService{
         ProjectModel projectModel1=this.projectDTO.entityToModel(newProject);
         return new ResponseEntity<ProjectModel>(projectModel1, HttpStatus.OK);
     }
-
+//    public List<Project> getProjectByCid(int c_id) {
+//        Optional<Clients>  getClient = Optional.ofNullable(this.clientRepository.findClientsById(c_id));
+//        if(getClient.isPresent()){
+//            Clients client = getClient.get();
+//            List<Project> list = this.projectRepository.findAllByClientId(c_id);
+//            if(list.size()!=0){
+//                return list;
+//            }
+//            else {
+//                return null;
+//            }
+//        }else{
+//            throw new Exception("client not found");
+//        }
+//    }
     @Override
     public ResponseEntity<List<Project>> getProjectByOrgId(int o_id) {
         Optional<Organisation> getOrg = this.organisationRepository.findByOrgId(o_id);
@@ -109,7 +125,6 @@ public class ProjectServiceImp implements ProjectService{
             throw new Exception("Org not found");
         }
     }
-
     public ResponseEntity<?> updateProj(int projectId, Map<Object,Object> fields) {
         Optional<Project> getProject = Optional.ofNullable(this.projectRepository.findProjectById(projectId));
         if(getProject.isPresent()){
@@ -126,5 +141,4 @@ public class ProjectServiceImp implements ProjectService{
             throw new Exception("project not found");
         }
     }
-
 }
