@@ -6,10 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Getter
@@ -55,6 +52,9 @@ public class Resource {
     @OneToMany(mappedBy = "createdBy")
     @JsonIgnore
     private List<Project> createdByID;
+    @OneToMany(mappedBy = "modifiedBy")
+    @JsonIgnore
+    private List<Project> modifiedByID;
     @OneToMany(mappedBy = "spoc")
     @JsonIgnore
     private List<Project> spocList;
@@ -90,15 +90,31 @@ public class Resource {
     @JoinColumn(name="designation_id",referencedColumnName = "id")
     private Designation ResourceList;
 
+    @OneToMany(mappedBy = "InvoiceHistoryCreatedBy")
     @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "resourcef")
+    private List<InvoiceHistory> InvoiceHistoryCreatedBy;
+
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "resourcef")
     //@JsonBackReference
     Set<Feature> feature = new HashSet<>();
+
+    @OneToMany(mappedBy = "addedBy")
+    @JsonIgnore
+    private List<ProjectStatus> addedByID;
+
+    public Set<Feature> getFeature() {
+        return feature;
+    }
+
+    public void setFeature(Set<Feature> feature) {
+        this.feature = feature;
+    }
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "resource")
     //@JsonBackReference
-    Set<Project> project = new HashSet<>();
+    Set<Project> project = new TreeSet<>();
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "resourcec")

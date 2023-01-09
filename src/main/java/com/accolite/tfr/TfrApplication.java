@@ -22,22 +22,20 @@ public class TfrApplication {
 	public static void main(String[] args) {SpringApplication.run(TfrApplication.class, args);
 	}
 
-	//@EnableWebMvc
-//	@Configuration
-//	public class WebConfig
-//	{
-//		@Bean
-//		public WebMvcConfigurer corsConfigurer()
-//		{
-//			return new WebMvcConfigurer() {
-//				@Override
-//				public void addCorsMappings(CorsRegistry registry) {
-//					registry.addMapping("/**").allowedOrigins("http://localhost:4200");
-//				}
-//			};
-//		}
-//
-//		
-//	}
+//	@EnableWebMvc
+	@Configuration
+	public class WebConfig
+	{
+		@Bean
+		public WebMvcConfigurer corsConfigurer()
+		{
+			return new WebMvcConfigurer() {
+				@Override
+				public void addCorsMappings(CorsRegistry registry) {
+					registry.addMapping("/**").allowedOrigins("http://localhost:4200");
+				}
+			};
+		}
 
+	}
 }

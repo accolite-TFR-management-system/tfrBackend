@@ -28,9 +28,9 @@ public class ProjectStatus {
     @CreationTimestamp
     private Date date_of_add;
 
-    @Column(name = "added_by")
-    private int added_by;
-
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+    @JoinColumn(name="added_by",referencedColumnName = "id")
+    private Resource addedBy;
 
 //    public int getId() {
 //        return id;

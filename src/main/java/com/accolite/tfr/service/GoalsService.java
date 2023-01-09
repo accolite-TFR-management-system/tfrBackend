@@ -16,5 +16,7 @@ public interface GoalsService {
     public List<Goals> getGoals(int m_id);
     public ResponseEntity<?> updateGoals(int goalId, Map<Object, Object> fields);
 
+    public List<Goals> getGoalsByPid(int p_id);
+
 
 }

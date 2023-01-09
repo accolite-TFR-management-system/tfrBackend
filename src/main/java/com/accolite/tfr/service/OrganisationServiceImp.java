@@ -4,6 +4,7 @@ import com.accolite.tfr.DTO.OrganisationDTO;
 import com.accolite.tfr.DTOmodel.OrganisationModel;
 import com.accolite.tfr.exception.Exception;
 import com.accolite.tfr.model.Organisation;
+import com.accolite.tfr.model.Resource;
 import com.accolite.tfr.repository.OrganisationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,7 @@ public class OrganisationServiceImp implements OrganisationService{
             throw new Exception("User didn't found with ID: " + org_id);
         }
     }
+
     
     public List<Organisation> getdivision(String div){
     	return this.organisationRepository.FindbyDepartment_type(div);
@@ -46,4 +48,29 @@ public class OrganisationServiceImp implements OrganisationService{
     }
     
     
+
+
+    @Override
+    public List<Organisation> getAllDiv() {
+        List<Organisation> list = this.organisationRepository.findAllDivsions();
+        if(list.size()!=0){
+            return list;
+        }
+        else{
+            return null;
+        }
+
+    }
+
+    @Override
+    public List<Organisation> getAllSupDep() {
+        List<Organisation> list = this.organisationRepository.findAllSupDep();
+        if(list.size()!=0){
+            return list;
+        }
+        else{
+            return null;
+        }
+    }
+
 }

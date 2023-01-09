@@ -40,4 +40,8 @@ public class Designation {
 //    @JsonBackReference(value="ResourceList")
     private List<Resource> ResourceList;
 
+
+    public int compareTo(Designation resourceList) {
+        return resourceList.getId();
+    }
 }

@@ -6,11 +6,20 @@ import java.util.List;
 import com.accolite.tfr.DTOmodel.OrganisationModel;
 import com.accolite.tfr.model.Organisation;
 
+import java.util.List;
+
 
 public interface OrganisationService {
     public Organisation addOrganisation(OrganisationModel od);
     public Organisation getOrganisation(int org_id);
+
     public List<Organisation> getdivision(String div);
     public List<Organisation> getsupdept(String div);
     public List<Organisation> getdept(String div);
+
+
+    List<Organisation> getAllDiv();
+
+    List<Organisation> getAllSupDep();
+
 }

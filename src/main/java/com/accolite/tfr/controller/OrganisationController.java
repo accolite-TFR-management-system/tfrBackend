@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins="http://localhost:4200")
 @RequestMapping("/tfr")
@@ -32,8 +34,9 @@ public class OrganisationController {
         Organisation organisation = this.organisationService.addOrganisation(organisationModel);
         OrganisationModel organisationModel1 = this.organisationDTO.entityToModel(organisation);
         return ResponseEntity.ok().body(organisationModel1);
-    }
-    
+ 
+   }
+  
     @PostMapping("/getdivision")
     private ResponseEntity<List<OrganisationModel>> getdivision(@RequestBody String div){
     	List<Organisation> divlist=this.organisationService.getdivision(div);
@@ -58,4 +61,18 @@ public class OrganisationController {
    
 }
     
+
+    @GetMapping("/getAllDiv")
+    private ResponseEntity<List<OrganisationModel>> getAllDiv(){
+        List<Organisation> List = this.organisationService.getAllDiv();
+        List<OrganisationModel> organisationModels=this.organisationDTO.allEntitiesToModels(List);
+        return ResponseEntity.ok().body(organisationModels);
+    }
+    @GetMapping("/getAllSupDep")
+    private ResponseEntity<List<OrganisationModel>> getAllSupDep(){
+        List<Organisation> List = this.organisationService.getAllSupDep();
+        List<OrganisationModel> organisationModels=this.organisationDTO.allEntitiesToModels(List);
+        return ResponseEntity.ok().body(organisationModels);
+    }
+
 }

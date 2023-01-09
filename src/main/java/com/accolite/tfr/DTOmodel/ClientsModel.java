@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -23,6 +24,12 @@ public class ClientsModel {
 
     private String emp_email;
     
+    private int emp_id;
+
+    private String client_location;
+
+    private String emp_designation;
+
     private int emp_id;
 
     private String client_location;

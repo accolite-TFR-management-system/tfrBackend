@@ -1,5 +1,6 @@
 package com.accolite.tfr.model;
 
+import java.util.Comparator;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -9,10 +10,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Getter
@@ -28,9 +26,9 @@ public class Project {
     private String name;
     @Column(name="start_date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate start_date;
+    private Date start_date;
     @Column(name="end_date")
-    private LocalDate end_date;
+    private Date end_date;
     @Column(name="rag_status")
     private  String rag_status;
     @Column(name="sow")
@@ -73,9 +71,11 @@ public class Project {
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="created_by",referencedColumnName = "id")
     private Resource createdBy;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+    @JoinColumn(name="modified_by",referencedColumnName = "id")
+    private Resource modifiedBy;
     @Column(name="invoicing_status")
     private String invoicing_status;
-//
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="spoc_id",referencedColumnName = "id")
@@ -98,7 +98,12 @@ public class Project {
     @OneToMany(mappedBy = "ProjectRisk")
     @JsonIgnore
     private List<Risk> ProjectRisk;
-//    @OneToMany(mappedBy = "RiskCreatedBy")
+
+    @OneToMany(mappedBy = "ProjectInvoiceHistory")
+    @JsonIgnore
+    private List<InvoiceHistory> ProjectInvoiceHistory;
+
+    //    @OneToMany(mappedBy = "RiskCreatedBy")
 //    @JsonIgnore
 //    private List<Risk> RiskCreatedBy;
 //    @OneToMany(mappedBy = "ModifiedBy")
@@ -118,7 +123,7 @@ public class Project {
             inverseJoinColumns = { @JoinColumn(name = "resource_id") }
     )
     //@JsonManagedReference
-    private Set<Resource> resource = new HashSet<>();
+    private Set<Resource> resource = new TreeSet<>(Comparator.comparing((Resource e) -> e.getResourceList().getDesignation_name()));
 
 
     public Set<Resource> getResource() {

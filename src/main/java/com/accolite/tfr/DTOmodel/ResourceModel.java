@@ -7,10 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 @Setter
@@ -30,6 +27,7 @@ public class ResourceModel {
     private List<Project> projectListForDep;
     private List<Project> projectListForLead;
     private List<Project> createdByID;
+    private List<Project> modifiedByID;
     private List<Project> spocList;
     private List<Milestone> milestoneList;
     private List<Clients> createdBy;
@@ -39,7 +37,9 @@ public class ResourceModel {
     private List<ResourceHistory> ResourceHistorycreatedBy;
     private List<Goals> CreatedByGoals;
     private Designation ResourceList;
+    private List<InvoiceHistory> InvoiceHistoryCreatedBy;
     Set<Feature> feature = new HashSet<>();
-    Set<Project> project = new HashSet<>();
+    private List<ProjectStatus> addedByID;
+    Set<Project> project = new TreeSet<>();
     Set<Clients> client = new HashSet<>();
 }
