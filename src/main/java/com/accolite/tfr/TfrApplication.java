@@ -22,33 +22,22 @@ public class TfrApplication {
 	public static void main(String[] args) {SpringApplication.run(TfrApplication.class, args);
 	}
 
-	@EnableWebMvc
-	@Configuration
-	public class WebConfig
-	{
-		@Bean
-		public WebMvcConfigurer corsConfigurer()
-		{
-			return new WebMvcConfigurer() {
-				@Override
-				public void addCorsMappings(CorsRegistry registry) {
-					registry.addMapping("/**").allowedOrigins("http://localhost:4200");
-				}
-			};
-		}
-
-		@Bean
-		public ObjectMapper jsonObjectMapper() {
-			final ObjectMapper jsonMapper = new ObjectMapper();
-			jsonMapper.registerModule(new JavaTimeModule());
-			jsonMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-
-			//some other configuration like:
-//			jsonMapper.registerModule(new Jdk8Module());
-//			jsonMapper.disable(SerializationFeature.WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS);
-
-			return jsonMapper;
-		}
-	}
+	//@EnableWebMvc
+//	@Configuration
+//	public class WebConfig
+//	{
+//		@Bean
+//		public WebMvcConfigurer corsConfigurer()
+//		{
+//			return new WebMvcConfigurer() {
+//				@Override
+//				public void addCorsMappings(CorsRegistry registry) {
+//					registry.addMapping("/**").allowedOrigins("http://localhost:4200");
+//				}
+//			};
+//		}
+//
+//		
+//	}
 
 }

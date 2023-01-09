@@ -8,6 +8,7 @@ import com.accolite.tfr.repository.OrganisationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,4 +32,18 @@ public class OrganisationServiceImp implements OrganisationService{
             throw new Exception("User didn't found with ID: " + org_id);
         }
     }
+    
+    public List<Organisation> getdivision(String div){
+    	return this.organisationRepository.FindbyDepartment_type(div);
+    }
+    
+    public List<Organisation> getsupdept(String div){
+    	return this.organisationRepository.Findbysuperdept(div);
+    }
+    
+    public List<Organisation> getdept(String div){
+    	return this.organisationRepository.Findbydept(div);
+    }
+    
+    
 }

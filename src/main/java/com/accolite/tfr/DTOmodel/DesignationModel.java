@@ -17,7 +17,7 @@ public class DesignationModel {
     private String designation_name;
 
     private int designation_code;
-
+    
     private List<ResourceHistory> ResourceHistoryList;
 
     private List<Resource> ResourceList;

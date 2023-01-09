@@ -13,6 +13,5 @@ public interface ResourceRepository extends JpaRepository<Resource,Integer> {
     @Query(value="select * from resources r where r.id=?1",nativeQuery=true)
     Resource findResourceById(int r_id);
     Resource findByEmail(String email);
-    Resource findByEmail(String email);
 
 }

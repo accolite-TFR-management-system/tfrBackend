@@ -3,7 +3,11 @@ package com.accolite.tfr.service;
 import com.accolite.tfr.DTO.DesignationDTO;
 import com.accolite.tfr.DTOmodel.DesignationModel;
 import com.accolite.tfr.model.Designation;
+import com.accolite.tfr.model.Organisation;
 import com.accolite.tfr.repository.DesignationRepository;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,4 +24,8 @@ public class DesignationServiceImp implements DesignationService{
         return this.designationRepository.save(designation);
     }
 
+    public List<Designation> getalldesignation(){
+    	return this.designationRepository.Findall();
+    }
+    
 }
