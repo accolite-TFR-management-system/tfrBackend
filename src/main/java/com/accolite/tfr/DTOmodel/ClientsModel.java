@@ -30,12 +30,6 @@ public class ClientsModel {
 
     private String emp_designation;
 
-    private int emp_id;
-
-    private String client_location;
-
-    private String emp_designation;
-
     private Date date_of_add;
 
     private Resource createdBy;

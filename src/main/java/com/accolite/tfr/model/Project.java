@@ -1,6 +1,5 @@
 package com.accolite.tfr.model;
 
-import java.util.Comparator;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -10,7 +9,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -123,7 +125,7 @@ public class Project {
             inverseJoinColumns = { @JoinColumn(name = "resource_id") }
     )
     //@JsonManagedReference
-    private Set<Resource> resource = new TreeSet<>(Comparator.comparing((Resource e) -> e.getResourceList().getDesignation_name()));
+    private Set<Resource> resource = new HashSet<>();
 
 
     public Set<Resource> getResource() {
@@ -133,4 +135,7 @@ public class Project {
     public void setResource(Set<Resource> project) {
         this.resource = project;
     }
+//    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
+//    @JoinColumn(name="modified_by",referencedColumnName = "id")
+//    private Resource modifiedBy;
 }

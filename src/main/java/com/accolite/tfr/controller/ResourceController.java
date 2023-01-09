@@ -105,26 +105,26 @@ public class ResourceController {
     }
 
 
-    @GetMapping("/showAddResource/{id}")
-    private Boolean showAddResource(@PathVariable("id") int id){
-        Boolean result = this.resourceServiceImp.showAddResource(id);
-        if(result!=null){
-            return result;
-        }
-        else{
-            return null;
-        }
-    }
+//    @GetMapping("/showAddResource/{id}")
+//    private Boolean showAddResource(@PathVariable("id") int id){
+//        Boolean result = this.resourceServiceImp.showAddResource(id);
+//        if(result!=null){
+//            return result;
+//        }
+//        else{
+//            return null;
+//        }
+//    }
 
     
     @GetMapping("/getallresource")
-    private ResponseEntity<HashMap<String,Integer>> getallresource(){
+    private ResponseEntity<HashMap<String,Integer>> getallresource() {
         return ResponseEntity.ok().body(this.resourceServiceImp.getallresources());
+    }
 
     @GetMapping("/FeatureListByResourceId/{r_id}")
-    private List<Boolean> getFeatureListByResourceId(@PathVariable("r_id") int r_id){
-        List<Boolean> list = this.resourceServiceImp.getFeatureListByResourceId(r_id);
+    private Boolean[] getFeatureListByResourceId(@PathVariable("r_id") int r_id){
+        Boolean[] list = this.resourceServiceImp.getFeatureListByResourceId(r_id);
         return list;
-
     }
 }

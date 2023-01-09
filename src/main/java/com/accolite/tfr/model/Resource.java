@@ -120,4 +120,7 @@ public class Resource {
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "resourcec")
     //@JsonBackReference
     Set<Clients> client = new HashSet<>();
+//    @OneToMany(mappedBy = "addedBy")
+//    @JsonIgnore
+//    private List<ProjectStatus> addedByID;
 }

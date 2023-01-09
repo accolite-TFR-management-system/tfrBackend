@@ -34,9 +34,9 @@ public class OrganisationController {
         Organisation organisation = this.organisationService.addOrganisation(organisationModel);
         OrganisationModel organisationModel1 = this.organisationDTO.entityToModel(organisation);
         return ResponseEntity.ok().body(organisationModel1);
- 
+
    }
-  
+
     @PostMapping("/getdivision")
     private ResponseEntity<List<OrganisationModel>> getdivision(@RequestBody String div){
     	List<Organisation> divlist=this.organisationService.getdivision(div);
@@ -44,23 +44,23 @@ public class OrganisationController {
     	List<OrganisationModel> divisionlist= this.organisationDTO.allEntitiesToModels(divlist);
     	return ResponseEntity.ok().body(divisionlist);
     }
-    
+
     @PostMapping("/getsupdept")
     private ResponseEntity<List<OrganisationModel>> getsupdept(@RequestBody String div){
     	List<Organisation> divlist=this.organisationService.getsupdept(div);
     	List<OrganisationModel> divisionlist= this.organisationDTO.allEntitiesToModels(divlist);
     	return ResponseEntity.ok().body(divisionlist);
     }
-    
+
     @PostMapping("/getdept")
     private ResponseEntity<List<OrganisationModel>> getdept(@RequestBody String div){
     	List<Organisation> divlist=this.organisationService.getdept(div);
     	List<OrganisationModel> divisionlist= this.organisationDTO.allEntitiesToModels(divlist);
     	return ResponseEntity.ok().body(divisionlist);
-    
-   
+
+
 }
-    
+
 
     @GetMapping("/getAllDiv")
     private ResponseEntity<List<OrganisationModel>> getAllDiv(){
@@ -74,5 +74,4 @@ public class OrganisationController {
         List<OrganisationModel> organisationModels=this.organisationDTO.allEntitiesToModels(List);
         return ResponseEntity.ok().body(organisationModels);
     }
-
 }
