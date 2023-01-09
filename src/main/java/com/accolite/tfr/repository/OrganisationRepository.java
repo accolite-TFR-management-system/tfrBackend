@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface OrganisationRepository extends JpaRepository<Organisation,Integer> {
     @Query(value="select * from organization r where r.parent_id=0 and grandparent_id=0",nativeQuery=true)
@@ -13,4 +14,7 @@ public interface OrganisationRepository extends JpaRepository<Organisation,Integ
 
     @Query(value="select * from organization r where r.parent_id!=0 and grandparent_id=0",nativeQuery=true)
     List<Organisation> findAllSupDep();
+
+    @Query(value="select * from organization r where id=?1",nativeQuery = true)
+    Optional<Organisation> findByOrgId(int o_id);
 }

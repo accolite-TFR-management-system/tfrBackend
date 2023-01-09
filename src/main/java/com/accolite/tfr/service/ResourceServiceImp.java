@@ -52,7 +52,77 @@ public class ResourceServiceImp implements ResourceService{
     @Override
     public Resource addResource(ResourceModel resourceModel) {
         Resource resourceEntity = resourceDTO.modelToEntity(resourceModel);
-        return resourceRepository.save(resourceEntity);
+        Resource  resource=resourceRepository.save(resourceEntity);
+        int deg_id = resource.getResourceList().getId();
+        if(deg_id==1){
+            int[] arr1= {1,2,3,4,5,6,13,14,15,16,17};
+//            /add/resource/{resourceId}/feature/{featureId}
+            for(int i=0;i<arr1.length;i++) {
+                Optional<Feature> FeatureOptional= Optional.ofNullable(this.featureRepository.findFeatureById(arr1[i]));
+                if(FeatureOptional.isPresent()) {
+                    Feature feature = FeatureOptional.get();
+                    Set<Resource> s = feature.getResourcef();
+                    feature.getResourcef().add(resource);
+                    featureRepository.save(feature);
+                }
+                else {
+                    throw new Exception("feature not present");
+                }
+            }
+        } else if (deg_id==2) {
+            int[] arr2={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17};
+//            Set<Feature> s = resource.getFeature();
+            for(int i=0;i<arr2.length;i++) {
+//                final String url = "http://localhost:8902/tfr/add/resource/"+ resourceEntity.getId()+"/feature/"+arr2[i];
+//                RestTemplate restTemplate = new RestTemplate();
+//                ResponseEntity<FeatureModel> response = new ResponseEntity<>();
+//                String result = restTemplate.postForObject(url,, String.class);
+//                Feature feature = this.featureRepository.findFeatureById(arr2[i]);
+//                resource.getFeature().add(feature);
+//                featureRepository.save(feature);
+
+                Optional<Feature> FeatureOptional= Optional.ofNullable(this.featureRepository.findFeatureById(arr2[i]));
+                if(FeatureOptional.isPresent()) {
+                    Feature feature = FeatureOptional.get();
+                    Set<Resource> s = feature.getResourcef();
+                    feature.getResourcef().add(resource);
+                    featureRepository.save(feature);
+                }
+                else {
+                    throw new Exception("feature not present");
+                }
+
+            }
+        }else if (deg_id==3) {
+            int[] arr3={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17};
+            for(int i=0;i<arr3.length;i++) {
+                Optional<Feature> FeatureOptional= Optional.ofNullable(this.featureRepository.findFeatureById(arr3[i]));
+                if(FeatureOptional.isPresent()) {
+                    Feature feature = FeatureOptional.get();
+                    Set<Resource> s = feature.getResourcef();
+                    feature.getResourcef().add(resource);
+                    featureRepository.save(feature);
+                }
+                else {
+                    throw new Exception("feature not present");
+                }
+            }
+        }else if (deg_id==4 || deg_id ==5 ) {
+            int[] arr4={7,8,9,10,11,12,13,14};
+            for(int i=0;i<arr4.length;i++) {
+                Optional<Feature> FeatureOptional= Optional.ofNullable(this.featureRepository.findFeatureById(arr4[i]));
+                if(FeatureOptional.isPresent()) {
+                    Feature feature = FeatureOptional.get();
+                    Set<Resource> s = feature.getResourcef();
+                    feature.getResourcef().add(resource);
+                    featureRepository.save(feature);
+                }
+                else {
+                    throw new Exception("feature not present");
+                }
+            }
+        }
+        return resource;
     }
 
     public ResponseEntity<ProjectModel> addEmployeeToProject(int employeeId, int projectId) {
@@ -222,15 +292,15 @@ public class ResourceServiceImp implements ResourceService{
         if(project.isPresent() && resource.isPresent()) {
             Resource employee = resource.get();
             Project proj = project.get();
-            LocalDate ld=LocalDate.now();
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+//            LocalDate ld=LocalDate.now();
+//            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             Date date = new Date();
             Timestamp ts=new Timestamp(date.getTime());
             proj.getResource().remove(employee);
             ResourceHistory resourceHistory=new ResourceHistory();
             resourceHistory.setStart_date(employee.getJoin_date());
-//            resourceHistory.setEnd_date();
-//            resourceHistory.setDate_of_add();
+            resourceHistory.setEnd_date(ts);
+            resourceHistory.setDate_of_add(ts);
             resourceHistory.setResourceHistoryProject(proj);
             resourceHistory.setResourceHistoryList(employee.getResourceList());
             resourceHistory.setRemark(employee.getRemark());
@@ -242,5 +312,43 @@ public class ResourceServiceImp implements ResourceService{
         } else {
             throw new Exception("Deletion not possible");
         }
+    }
+
+    public Boolean showAddResource(int id) {
+        Optional<Resource> employeeOptional= Optional.ofNullable(this.resourceRepository.findResourceById(id));
+        if(employeeOptional.isPresent()){
+            Resource resource = employeeOptional.get();
+            Feature feature = featureRepository.findFeatureById(5);
+            Set<Feature> s = resource.getFeature();
+            if(s.contains(feature)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public List<Boolean> getFeatureListByResourceId(int r_id) {
+        Optional<Resource> employeeOptional= Optional.ofNullable(this.resourceRepository.findResourceById(r_id));
+        List<Boolean> list =new ArrayList<>(17);
+//        for (int i = 0; i < 17; i++) {
+//            list.add(false);
+//        }
+        if(employeeOptional.isPresent()){
+            Resource resource = employeeOptional.get();
+            Set<Feature> s = resource.getFeature();
+            Iterator<Feature> sIterator = s.iterator();
+//            while(sIterator.hasNext()) {
+//                list.add(sIterator.next().getId(),true);
+////                System.out.println(sIterator.next().getId());
+//            }
+            for (Feature loop : s) {
+                list.add(loop.getId(),true);
+                System.out.println(loop.getFeature());
+            }
+//            Set<FeatureModel> sm = this.featureDTO.allEntitiesToModelsSet(s);
+//            return  new  ResponseEntity<Set<FeatureModel>>(sm,HttpStatus.OK);
+            return list;
+        }
+        return list;
     }
 }

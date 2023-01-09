@@ -25,9 +25,9 @@ public class Project {
     private String name;
     @Column(name="start_date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate start_date;
+    private Date start_date;
     @Column(name="end_date")
-    private LocalDate end_date;
+    private Date end_date;
     @Column(name="rag_status")
     private  String rag_status;
     @Column(name="sow")
@@ -76,7 +76,6 @@ public class Project {
     @Column(name="invoicing_status")
     @JsonIgnore
     private String invoicing_status;
-//
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType. DETACH})
     @JoinColumn(name="spoc_id",referencedColumnName = "id")
@@ -99,7 +98,12 @@ public class Project {
     @OneToMany(mappedBy = "ProjectRisk")
     @JsonIgnore
     private List<Risk> ProjectRisk;
-//    @OneToMany(mappedBy = "RiskCreatedBy")
+
+    @OneToMany(mappedBy = "ProjectInvoiceHistory")
+    @JsonIgnore
+    private List<InvoiceHistory> ProjectInvoiceHistory;
+
+    //    @OneToMany(mappedBy = "RiskCreatedBy")
 //    @JsonIgnore
 //    private List<Risk> RiskCreatedBy;
 //    @OneToMany(mappedBy = "ModifiedBy")

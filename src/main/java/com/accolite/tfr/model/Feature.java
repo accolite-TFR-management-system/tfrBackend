@@ -27,7 +27,7 @@ public class Feature {
 //    @Column(name = "feature_name")
 //    private String feature_name;
 
-    @ManyToMany(fetch = FetchType.LAZY,cascade = { CascadeType.ALL })
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "resource_feature_mn_table",
             joinColumns = { @JoinColumn(name = "feature_id") },

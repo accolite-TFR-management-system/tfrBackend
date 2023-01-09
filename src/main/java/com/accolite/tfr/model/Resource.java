@@ -90,10 +90,26 @@ public class Resource {
     @JoinColumn(name="designation_id",referencedColumnName = "id")
     private Designation ResourceList;
 
+    @OneToMany(mappedBy = "InvoiceHistoryCreatedBy")
     @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "resourcef")
+    private List<InvoiceHistory> InvoiceHistoryCreatedBy;
+
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "resourcef")
     //@JsonBackReference
     Set<Feature> feature = new HashSet<>();
+
+    @OneToMany(mappedBy = "addedBy")
+    @JsonIgnore
+    private List<ProjectStatus> addedByID;
+
+    public Set<Feature> getFeature() {
+        return feature;
+    }
+
+    public void setFeature(Set<Feature> feature) {
+        this.feature = feature;
+    }
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "resource")
