@@ -13,6 +13,8 @@ public interface ProjectRepository extends JpaRepository<Project,Integer> {
 
     @Query(value="select * FROM project where division_id=?1 or super_department_id=?1 or department_id=?1",nativeQuery = true)
     List<Project> findByOrgId(int o_id);
+    @Query(value="select * FROM project where department_head_id=?1 or resource_lead_id=?1 or spoc_id=?1",nativeQuery = true)
+    List<Project> findByHeadId(int h_id);
     @Query(value="SELECT * FROM project where client_id=?1",nativeQuery=true)
     List<Project> findAllByClientId(int c_id);
 }

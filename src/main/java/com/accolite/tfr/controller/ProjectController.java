@@ -73,6 +73,11 @@ public class ProjectController {
         ResponseEntity<List<Project>>  list = this.projectServiceImp.getProjectByOrgId(o_id);
         return list;
     }
+    @GetMapping("/getProjectByHeadId/{h_id}")
+    private ResponseEntity<List<Project>> getProjectByDepId(@PathVariable("h_id") int h_id){
+        ResponseEntity<List<Project>> list = this.projectServiceImp.getProjectByHedaId(h_id);
+        return list;
+    }
 
     @PatchMapping("/updateProj/{p_id}")
     private ResponseEntity<?> updateProject(@PathVariable("p_id") int projectId,@RequestBody Map<Object,Object> fields){
