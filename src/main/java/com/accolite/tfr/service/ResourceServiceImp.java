@@ -248,7 +248,6 @@ public class ResourceServiceImp implements ResourceService {
 
     public ResponseEntity<Set<ResourceModel>> getResourcesOnProject(int projectId) {
         Optional<Project> projectOptional = Optional.ofNullable(this.projectRepository.findProjectById(projectId));
-
         if (projectOptional.isPresent()) {
             Project project = projectOptional.get();
             Set<Resource> s = project.getResource();

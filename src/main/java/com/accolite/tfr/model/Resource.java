@@ -70,7 +70,7 @@ public class Resource {
     private List<Clients> createdBy;
     @OneToMany(mappedBy = "modifiedBy")
     @JsonIgnore
-    private List<Risk> modifiedBy;
+        private List<Risk> modifiedBy;
     @OneToMany(mappedBy = "riskCreatedBy")
     @JsonIgnore
     private List<Risk> riskCreatedBy;

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.transaction.Transactional;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +29,33 @@ public class InvoiceHistoryServiceImp {
     private ProjectRepository projectRepository;
 
     public InvoiceHistory addInvoiceHistory(InvoiceHistory invoiceHistory) {
-        return this.invoiceHistoryRepository.save(invoiceHistory);
+        Optional<Project> project = this.projectRepository.findById(invoiceHistory.getProjectInvoiceHistory().getId());
+        if(project.isPresent()){
+            Project getProject = project.get();
+            getProject.setInvoicing_status(invoiceHistory.getInvoice_status());
+            getProject.setName(getProject.getName());
+            getProject.setCurrent_pointer(getProject.getCurrent_pointer());
+            getProject.setStart_date(getProject.getStart_date());
+            getProject.setEnd_date(getProject.getEnd_date());
+            getProject.setParent_id(getProject.getParent_id());
+            getProject.setRag_status(getProject.getRag_status());
+            getProject.setSow(getProject.getSow());
+            getProject.setTotal_resource(getProject.getTotal_resource());
+            getProject.setClient(getProject.getClient());
+            getProject.setCreatedBy(getProject.getCreatedBy());
+            getProject.setDepartment(getProject.getDepartment());
+            getProject.setDivision(getProject.getDivision());
+            getProject.setSuperDepartment(getProject.getSuperDepartment());
+            getProject.setDepHead(getProject.getDepHead());
+            getProject.setProjectLead(getProject.getProjectLead());
+            getProject.setModifiedBy(getProject.getModifiedBy());
+            getProject.setSpoc(getProject.getSpoc());
+            this.projectRepository.save(getProject);
+            return this.invoiceHistoryRepository.save(invoiceHistory);
+        }
+        else {
+            throw new Exception("Project ID not found");
+        }
     }
 
     public ResponseEntity<List<InvoiceHistory>> getInvoiceHistoryByProjectID(int p_id){
@@ -36,6 +63,7 @@ public class InvoiceHistoryServiceImp {
         if (project.isPresent()) {
             Project proj=project.get();
             List<InvoiceHistory> invoiceHistory = this.invoiceHistoryRepository.getInvoiceHistoryByPID(p_id);
+            invoiceHistory.sort(Comparator.comparing(InvoiceHistory::getDate_of_add));
             if(invoiceHistory.size()!=0) {
                 return new ResponseEntity<List<InvoiceHistory>>(invoiceHistory,HttpStatus.OK);
             }
@@ -47,4 +75,16 @@ public class InvoiceHistoryServiceImp {
             throw new Exception("Project ID not found");
         }
     }
+
+//    public ResponseEntity<InvoiceHistory> raiseInvoice(int p_id, String type) {
+//        Optional<Project> project = this.projectRepository.findById(p_id);
+//        if(project.isPresent()){
+//            Project getProject = project.get();
+//            getProject.setInvoicing_status(type);
+//            return this.invoiceHistoryRepository.save(invoiceHistory);
+//        }
+//        else {
+//            throw new Exception("Project ID not found");
+//        }
+//    }
 }

@@ -12,6 +12,7 @@ import com.accolite.tfr.model.Resource;
 import com.accolite.tfr.repository.ClientRepository;
 import com.accolite.tfr.repository.OrganisationRepository;
 import com.accolite.tfr.repository.ProjectRepository;
+import com.accolite.tfr.repository.ResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,8 @@ public class ProjectServiceImp implements ProjectService{
     public ProjectRepository projectRepository;
     @Autowired
     public OrganisationRepository organisationRepository;
+    @Autowired
+    public ResourceRepository resourceRepository;
     @Autowired(required = false)
     public ProjectDTO projectDTO;
 
@@ -74,6 +77,12 @@ public class ProjectServiceImp implements ProjectService{
 
     public ResponseEntity<List<ProjectModel>> getAllProjectSortedByDate() {
         List<Project> projectList = this.projectRepository.findAll() ;
+        for(int i=0 ; i<projectList.size() ; i++){
+            if(projectList.get(i).getCurrent_pointer()==0){
+                projectList.remove(i);
+                i=i-1;
+            }
+        }
         projectList.sort(Comparator.comparing(Project::getDate_of_add));
         List<ProjectModel> projectModels=this.projectDTO.allEntitiesToModels(projectList);
         return  new ResponseEntity<List<ProjectModel>>(projectModels, HttpStatus.OK);
@@ -139,6 +148,29 @@ public class ProjectServiceImp implements ProjectService{
         }
         else{
             throw new Exception("project not found");
+        }
+    }
+
+    public ResponseEntity<List<ProjectModel>> getProjectByRid(int r_id) {
+        Optional<Resource> resource = Optional.ofNullable(this.resourceRepository.findResourceById(r_id));
+        List<Project> list = new ArrayList<>();
+        if(resource.isPresent()){
+            Resource getResource = resource.get();
+            Set<Project> s = getResource.getProject();
+            for (Project p : s) {
+                list.add(p);
+            }
+            for(int i = 0 ; i<list.size();i++){
+                if(list.get(i).getCurrent_pointer()==0) {
+                    list.remove(i);
+                    i=i-1;
+                }
+            }
+            List<ProjectModel> projectModels=this.projectDTO.allEntitiesToModels(list);
+            return  new  ResponseEntity<List<ProjectModel>>(projectModels,HttpStatus.OK);
+        }
+        else{
+            throw new Exception("resource not found");
         }
     }
 }
