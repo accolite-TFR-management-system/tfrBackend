@@ -173,4 +173,16 @@ public class ProjectServiceImp implements ProjectService{
             throw new Exception("resource not found");
         }
     }
+
+    public ResponseEntity<List<Project>> getProjectByHedaId(int h_id) {
+        Optional<List<Project>> head = Optional.ofNullable(this.projectRepository.findByHeadId(h_id));
+        List<Project> list = new ArrayList<>();
+        if(head.isPresent()){
+            list = head.get();
+            return new ResponseEntity<List<Project>>(list,HttpStatus.OK);
+        }
+        else{
+            throw  new Exception("head not found");
+        }
+    }
 }
