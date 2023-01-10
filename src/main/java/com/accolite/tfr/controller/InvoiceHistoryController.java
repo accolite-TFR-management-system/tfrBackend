@@ -38,4 +38,11 @@ public class InvoiceHistoryController {
         ResponseEntity<List<InvoiceHistory>>  list = this.invoiceHistoryServiceImpl.getInvoiceHistoryByProjectID(p_id);
         return list;
     }
+
+//    @PostMapping("/raiseInvoice/{p_id}/{status}")
+//    private ResponseEntity<InvoiceHistory> raiseInvoice(@PathVariable("p_id") int p_id,@PathVariable("status") String type){
+//        ResponseEntity<InvoiceHistory> invoice = this.invoiceHistoryServiceImpl.raiseInvoice(p_id,type);
+//        return invoice;
+//
+//    }
 }

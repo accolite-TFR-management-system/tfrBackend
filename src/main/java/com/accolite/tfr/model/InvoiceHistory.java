@@ -3,6 +3,7 @@ package com.accolite.tfr.model;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -29,7 +30,11 @@ public class InvoiceHistory {
     @Column(name="invoice_status")
     String invoice_status;
 
-    @Column(name="date_of_add")
-    Date date_of_add;
+    @Column(name = "date_of_add",nullable = false, updatable = false)
+    @CreationTimestamp
+    private Date date_of_add;
+
+    @Column(name="current_pointer")
+    int current_pointer;
 
 }

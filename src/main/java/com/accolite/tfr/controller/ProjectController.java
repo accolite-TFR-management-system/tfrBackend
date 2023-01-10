@@ -79,4 +79,10 @@ public class ProjectController {
         return projectServiceImp.updateProj(projectId,fields);
     }
 
+    @GetMapping("/getProjectByRid/{r_id}")
+    private ResponseEntity<List<ProjectModel>> getProjectByRid(@PathVariable("r_id") int r_id){
+        ResponseEntity<List<ProjectModel>> list = this.projectServiceImp.getProjectByRid(r_id);
+        return list;
+    }
+
 }

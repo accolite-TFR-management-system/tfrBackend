@@ -13,4 +13,5 @@ public interface ResourceHistoryRepository extends JpaRepository<ResourceHistory
 
     @Query(value="SELECT * FROM resource_history where project_id=?1",nativeQuery=true)
     List<ResourceHistory> findResourceHistoryByProjectId(int p_id);
+
 }
